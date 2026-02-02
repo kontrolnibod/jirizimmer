@@ -2,17 +2,17 @@
 <html lang="cs">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Prodej nemovitosti – prodejní plán do 48 h</title>
-  <meta name="description" content="Získejte prodejní plán do 48 hodin: strategie ceny, marketing, prohlídky, vyjednávání a právní servis. Domluvit konzultaci." />
-  <meta name="robots" content="index,follow" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prodej nemovitosti — prodejní plán do 48 h</title>
+  <meta name="description" content="Prodejní plán do 48 hodin: strategie ceny, marketing, prohlídky, vyjednávání a právní servis. Získej návrh postupu." />
 
-  <!-- Open Graph -->
+  <!-- TODO: uprav doménu -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Prodej nemovitosti – prodejní plán do 48 h" />
-  <meta property="og:description" content="Strategie ceny, marketing a vyjednávání. Domluvit konzultaci." />
+  <meta property="og:title" content="Prodej nemovitosti — prodejní plán do 48 h" />
+  <meta property="og:description" content="Strategie ceny, marketing, vyjednávání. Bez chaosu." />
+  <meta property="og:url" content="https://tvoje-domena.cz" />
 
-  <!-- Schema.org (upravit jméno, telefon, email, adresu) -->
+  <!-- TODO: RealEstateAgent schema - uprav jméno, telefon, email, oblast -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -26,199 +26,745 @@
   </script>
 
   <style>
-    :root{--b:#111;--t:#111;--m:#555;--bg:#fff;--bd:#e6e6e6}
+    :root{
+      --bg:#0b0c0f;
+      --bg2:#0f1117;
+      --card:rgba(255,255,255,.06);
+      --card2:rgba(255,255,255,.08);
+      --bd:rgba(255,255,255,.14);
+      --txt:#f5f7ff;
+      --mut:rgba(245,247,255,.72);
+      --mut2:rgba(245,247,255,.55);
+      --acc:#ffffff;
+      --shadow: 0 18px 45px rgba(0,0,0,.45);
+      --r:22px;
+      --r2:16px;
+      --w:1120px;
+    }
     *{box-sizing:border-box}
-    body{margin:0;background:var(--bg);color:var(--t);font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--txt);
+      background:
+        radial-gradient(1100px 700px at 15% 8%, rgba(255,255,255,.12), transparent 55%),
+        radial-gradient(900px 650px at 85% 18%, rgba(255,255,255,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg), var(--bg2));
+    }
     a{color:inherit}
-    .wrap{max-width:1040px;margin:0 auto;padding:22px}
-    .top{display:flex;justify-content:space-between;gap:10px;align-items:center}
-    .pill{border:1px solid var(--bd);padding:8px 12px;border-radius:999px;font-size:13px;color:var(--m)}
-    .grid{display:grid;gap:18px}
-    @media(min-width:980px){.grid{grid-template-columns:1.15fr .85fr;align-items:start}}
-    h1{font-size:42px;line-height:1.08;margin:14px 0 10px}
-    p{color:var(--m);margin:0 0 12px;font-size:17px;line-height:1.5}
-    .card{border:1px solid var(--bd);border-radius:18px;padding:16px}
-    .btn{display:inline-block;background:var(--b);color:#fff;text-decoration:none;border-radius:14px;padding:12px 14px;font-weight:650}
-    .btn2{display:inline-block;border:1px solid var(--bd);border-radius:14px;padding:12px 14px;text-decoration:none}
-    .row{display:grid;gap:10px}
-    @media(min-width:980px){.row2{grid-template-columns:1fr 1fr}}
-    input,select,textarea,button{width:100%;padding:12px;border-radius:14px;border:1px solid var(--bd);font-size:16px}
-    textarea{min-height:90px;resize:vertical}
-    button{background:var(--b);color:#fff;border:none;font-weight:700;cursor:pointer}
-    button:hover{opacity:.92}
-    .kpis{display:grid;gap:10px;margin-top:16px}
-    @media(min-width:980px){.kpis{grid-template-columns:repeat(3,1fr)}}
-    .kpi b{display:block;margin-bottom:4px}
-    .hr{border-top:1px solid var(--bd);margin:22px 0}
-    .sec{margin:18px 0}
-    h2{margin:0 0 10px;font-size:22px}
-    .list{margin:8px 0 0 18px;color:var(--m);line-height:1.55}
-    .cases{display:grid;gap:10px}
-    @media(min-width:980px){.cases{grid-template-columns:1fr 1fr 1fr}}
-    details{border:1px solid var(--bd);border-radius:14px;padding:12px}
-    summary{cursor:pointer;font-weight:650}
-    .small{font-size:12px;color:#777;line-height:1.4}
-    .sticky{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--bd);padding:10px}
-    .sticky .wrap{padding:0;display:flex;gap:10px}
-    .sticky a{flex:1;text-align:center}
-    @media(min-width:980px){.sticky{display:none}}
+    .wrap{max-width:var(--w); margin:0 auto; padding: 22px 18px}
+    .nav{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: rgba(10,12,16,.55);
+      border-bottom:1px solid rgba(255,255,255,.08);
+    }
+    .nav .inner{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      max-width:var(--w); margin:0 auto; padding: 12px 18px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px; min-width:180px;
+      text-decoration:none;
+    }
+    .logo{
+      width:38px; height:38px; border-radius:14px;
+      background: linear-gradient(135deg, rgba(255,255,255,.26), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow: var(--shadow);
+    }
+    .brand b{display:block; font-size:14px; letter-spacing:.2px}
+    .brand span{display:block; font-size:12px; color:var(--mut2)}
+    .menu{display:none; gap:16px; align-items:center}
+    .menu a{color:var(--mut); text-decoration:none; font-size:13px}
+    .menu a:hover{color:var(--txt)}
+    .ctaRow{display:flex; gap:10px; align-items:center}
+    .pill{
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color:var(--mut);
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:13px;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .btn{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.92);
+      color:#0b0c0f;
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:750;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .btn:hover{opacity:.92}
+    .btnGhost{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      color:var(--txt);
+      padding:10px 12px;
+      border-radius:999px;
+      font-size:13px;
+      font-weight:650;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+    .btnGhost:hover{background: rgba(255,255,255,.10)}
+    @media(min-width:980px){
+      .menu{display:flex}
+    }
+
+    /* HERO */
+    .hero{padding: 22px 0 10px}
+    .heroGrid{
+      display:grid; gap:18px;
+    }
+    @media(min-width:980px){
+      .heroGrid{grid-template-columns: 1.12fr .88fr; align-items:stretch}
+    }
+    .heroLeft{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: var(--r);
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      position:relative;
+      min-height: 460px;
+      background: rgba(255,255,255,.05);
+    }
+    .heroMedia{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 600px at 15% 15%, rgba(255,255,255,.18), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.18), rgba(0,0,0,.72));
+    }
+    .heroMedia video{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover;
+      opacity:.55;
+      filter:saturate(1.05) contrast(1.05);
+    }
+    .heroOverlay{
+      position:absolute; inset:0;
+      padding: 26px 22px;
+      display:flex; flex-direction:column; justify-content:flex-end;
+      gap:14px;
+    }
+    .kicker{
+      display:inline-flex; gap:10px; align-items:center; flex-wrap:wrap;
+      color: var(--mut);
+      font-size: 13px;
+    }
+    .dot{
+      width:6px; height:6px; border-radius:99px;
+      background: rgba(255,255,255,.75);
+      display:inline-block;
+    }
+    h1{
+      margin:0;
+      font-size: clamp(34px, 4.2vw, 56px);
+      line-height: 1.03;
+      letter-spacing: -0.6px;
+    }
+    .sub{
+      margin:0;
+      font-size: clamp(15px, 1.35vw, 18px);
+      color: var(--mut);
+      line-height:1.55;
+      max-width: 58ch;
+    }
+    .heroActions{display:flex; gap:10px; flex-wrap:wrap; margin-top: 4px}
+    .heroNote{color: var(--mut2); font-size:12px; line-height:1.45}
+
+    /* RIGHT CARD (FORM) */
+    .panel{
+      border:1px solid rgba(255,255,255,.12);
+      border-radius: var(--r);
+      background: rgba(255,255,255,.06);
+      box-shadow: var(--shadow);
+      padding: 18px;
+      display:flex; flex-direction:column; gap:14px;
+    }
+    .panelHeader b{font-size:16px; letter-spacing:.2px}
+    .panelHeader p{margin:6px 0 0; color:var(--mut); font-size:13px; line-height:1.5}
+    .grid2{display:grid; gap:10px}
+    @media(min-width:540px){.grid2{grid-template-columns:1fr 1fr}}
+    input, select, textarea, button{
+      width:100%;
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(10,12,16,.55);
+      color: var(--txt);
+      padding: 12px 12px;
+      font-size: 15px;
+      outline:none;
+    }
+    input::placeholder, textarea::placeholder{color: rgba(245,247,255,.42)}
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(255,255,255,.28);
+      background: rgba(10,12,16,.62);
+    }
+    textarea{min-height:98px; resize:vertical}
+    .submit{
+      background: rgba(255,255,255,.92);
+      color:#0b0c0f;
+      font-weight: 800;
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.22);
+      padding: 12px 14px;
+    }
+    .submit:hover{opacity:.92}
+    .miniRow{display:flex; gap:10px}
+    .miniRow a{flex:1; text-align:center}
+    .small{color:var(--mut2); font-size:12px; line-height:1.45}
+    .divider{height:1px; background: rgba(255,255,255,.10); margin: 4px 0}
+
+    /* SECTIONS */
+    section.block{padding: 34px 0}
+    .sectionHead{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom: 16px}
+    .sectionHead h2{
+      margin:0;
+      font-size: clamp(20px, 2.2vw, 28px);
+      letter-spacing: -0.3px;
+    }
+    .sectionHead p{margin:0; color:var(--mut); font-size:14px; line-height:1.5; max-width: 70ch}
+    .cards3{display:grid; gap:12px}
+    @media(min-width:980px){.cards3{grid-template-columns: repeat(3, 1fr)}}
+    .card{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--r2);
+      padding: 16px;
+    }
+    .card b{display:block; margin-bottom:6px}
+    .card p{margin:0; color:var(--mut); font-size:14px; line-height:1.55}
+
+    /* CASES */
+    .cases{display:grid; gap:12px}
+    @media(min-width:980px){.cases{grid-template-columns: repeat(3, 1fr)}}
+    .ph{
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.04)),
+        radial-gradient(600px 260px at 20% 20%, rgba(255,255,255,.14), transparent 55%);
+      height: 170px;
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(245,247,255,.65);
+      font-weight: 700;
+      letter-spacing:.2px;
+    }
+    .tagRow{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .tag{
+      font-size:12px;
+      color: var(--mut);
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      padding:6px 10px;
+      border-radius: 999px;
+    }
+
+    /* PROCESS */
+    .steps{display:grid; gap:12px}
+    @media(min-width:980px){.steps{grid-template-columns: 1fr 1fr}}
+    .step{
+      display:flex; gap:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--r2);
+      padding: 14px;
+    }
+    .num{
+      width:38px; height:38px; border-radius: 14px;
+      background: rgba(255,255,255,.92);
+      color:#0b0c0f;
+      display:flex; align-items:center; justify-content:center;
+      font-weight: 900;
+    }
+    .step b{display:block; margin-bottom:4px}
+    .step p{margin:0; color:var(--mut); font-size:14px; line-height:1.55}
+
+    /* TESTIMONIALS */
+    .strip{
+      display:grid; gap:12px;
+    }
+    @media(min-width:980px){.strip{grid-template-columns: 1fr 1fr 1fr}}
+    .quote{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--r2);
+      padding: 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .quote:before{
+      content:"“";
+      position:absolute;
+      top:-18px; left:10px;
+      font-size: 84px;
+      color: rgba(255,255,255,.12);
+      font-weight: 900;
+    }
+    .quote p{margin:0; color:var(--mut); font-size:14px; line-height:1.55}
+    .quote b{display:block; margin-top:10px; font-size:13px}
+
+    /* FAQ */
+    .faq{display:grid; gap:10px}
+    @media(min-width:980px){.faq{grid-template-columns: 1fr 1fr}}
+    details{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--r2);
+      padding: 14px;
+    }
+    summary{cursor:pointer; font-weight:800}
+    details p{margin:10px 0 0; color:var(--mut); font-size:14px; line-height:1.55}
+
+    /* FINAL CTA */
+    .final{
+      border:1px solid rgba(255,255,255,.12);
+      background:
+        radial-gradient(850px 420px at 20% 20%, rgba(255,255,255,.18), transparent 55%),
+        rgba(255,255,255,.06);
+      border-radius: var(--r);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      display:grid; gap:14px;
+    }
+    @media(min-width:980px){.final{grid-template-columns: 1fr .9fr; align-items:center}}
+    .final h3{margin:0; font-size: 26px; letter-spacing:-0.3px}
+    .final p{margin:8px 0 0; color:var(--mut); line-height:1.55}
+
+    /* FOOTER */
+    footer{padding: 26px 0 40px; color:var(--mut2); font-size:12px}
+    .footGrid{display:grid; gap:10px}
+    @media(min-width:980px){.footGrid{grid-template-columns: 1fr 1fr; align-items:center}}
+    .right{text-align:left}
+    @media(min-width:980px){.right{text-align:right}}
+
+    /* MOBILE STICKY */
+    .mobileSticky{
+      position:fixed; left:0; right:0; bottom:0; z-index:60;
+      background: rgba(10,12,16,.72);
+      border-top: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      padding: 10px 12px;
+    }
+    .mobileSticky .row{
+      max-width: var(--w);
+      margin:0 auto;
+      display:flex; gap:10px;
+    }
+    .mobileSticky a{flex:1; text-align:center}
+    @media(min-width:980px){.mobileSticky{display:none}}
   </style>
 </head>
 
 <body>
-  <div class="wrap">
-    <header class="top">
-      <div class="pill">Prodej nemovitosti • Praha a okolí</div>
-      <div class="pill">
-        <a href="tel:+420123456789">+420 123 456 789</a> •
-        <a href="mailto:email@domena.cz">email@domena.cz</a>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="inner">
+      <a class="brand" href="#top">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <b>Jméno Příjmení</b>
+          <span>Prodej nemovitostí • Praha a okolí</span>
+        </div>
+      </a>
+
+      <nav class="menu" aria-label="Hlavní navigace">
+        <a href="#dukazy">Důkazy</a>
+        <a href="#proces">Proces</a>
+        <a href="#reference">Reference</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <div class="ctaRow">
+        <!-- TODO: uprav tel -->
+        <a class="pill" href="tel:+420123456789">Zavolat</a>
+        <a class="btn" href="#formular">Prodejní plán</a>
       </div>
-    </header>
-
-    <main class="grid">
-      <section>
-        <h1>Prodejní plán do 48 hodin.<br><span style="color:#555">Bez chaosu. Bez dohadů.</span></h1>
-        <p>
-          Pošlete základní informace o nemovitosti. Vrátím se s návrhem strategie ceny, marketingu a prodejního postupu.
-          Cíl: rychlejší prodej bez zbytečných slev.
-        </p>
-
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin:10px 0 0">
-          <a class="btn" href="#formular">Chci prodejní plán</a>
-          <a class="btn2" href="#proces">Jak to probíhá</a>
-        </div>
-
-        <div class="kpis">
-          <div class="card kpi"><b>Rychlá odezva</b><span class="small">Zpětný kontakt do 24 h (Po–So)</span></div>
-          <div class="card kpi"><b>Kontrola rizik</b><span class="small">Smlouvy, převod, úschova – bez improvizace</span></div>
-          <div class="card kpi"><b>Marketing</b><span class="small">Prezentace + distribuce + vyjednávání</span></div>
-        </div>
-
-        <div class="hr"></div>
-
-        <section class="sec" id="dukazy">
-          <h2>Důkazy (ne sliby)</h2>
-          <p class="small">Sem dej 3–6 konkrétních „případů“. Bez toho budeš komodita.</p>
-          <div class="cases">
-            <div class="card">
-              <b>Případ #1</b>
-              <div class="small">Lokalita • Typ • Problém • Strategie • Výsledek</div>
-            </div>
-            <div class="card">
-              <b>Případ #2</b>
-              <div class="small">Lokalita • Typ • Problém • Strategie • Výsledek</div>
-            </div>
-            <div class="card">
-              <b>Případ #3</b>
-              <div class="small">Lokalita • Typ • Problém • Strategie • Výsledek</div>
-            </div>
-          </div>
-        </section>
-
-        <section class="sec" id="proces">
-          <h2>Proces (5 kroků)</h2>
-          <ol class="list">
-            <li>Diagnostika: cíle, čas, rizika, realita trhu.</li>
-            <li>Cenová strategie: rozsah, scénáře, rozhodovací body.</li>
-            <li>Příprava a marketing: prezentace, kanály, cílení.</li>
-            <li>Prohlídky a vyjednávání: filtrace zájemců, tlak na cenu.</li>
-            <li>Dokončení: smlouvy, úschova, převod, předání.</li>
-          </ol>
-        </section>
-
-        <section class="sec" id="faq">
-          <h2>FAQ (námitky)</h2>
-          <div class="row">
-            <details>
-              <summary>Kolik stojí provize?</summary>
-              <div class="small" style="margin-top:8px">Uveď jasně: procento/rozsah, co je v ceně, kdy se platí.</div>
-            </details>
-            <details>
-              <summary>Jak rychle lze prodat?</summary>
-              <div class="small" style="margin-top:8px">Vysvětli: záleží na ceně, lokalitě, stavu, sezóně. Uveď typické rozpětí.</div>
-            </details>
-            <details>
-              <summary>Co když mám kupce sám?</summary>
-              <div class="small" style="margin-top:8px">Nabídni variantu: právní servis + vyjednávání + kontrola rizik.</div>
-            </details>
-          </div>
-        </section>
-      </section>
-
-      <aside class="card" id="formular">
-        <h2 style="margin:0 0 6px">Získat prodejní plán</h2>
-        <p class="small" style="margin:0 0 12px">Vyplň 30–60 sekund. Ozvu se do 24 h. Čím konkrétnější data, tím lepší návrh.</p>
-
-        <!-- FORM_ACTION: nahraď URL z Formspree (nebo jiné služby) -->
-        <form action="FORM_ACTION" method="POST">
-          <!-- honeypot -->
-          <input name="company" style="display:none" tabindex="-1" autocomplete="off" />
-
-          <div class="row row2">
-            <input required name="name" placeholder="Jméno" />
-            <input required name="phone" placeholder="Telefon" />
-          </div>
-
-          <div class="row row2">
-            <input required name="city" placeholder="Lokalita (město/část)" />
-            <select required name="type">
-              <option value="">Typ nemovitosti</option>
-              <option>Byt</option>
-              <option>Dům</option>
-              <option>Pozemek</option>
-              <option>Komerční</option>
-            </select>
-          </div>
-
-          <div class="row row2">
-            <select required name="timeline">
-              <option value="">Kdy chcete prodat?</option>
-              <option>0–3 měsíce</option>
-              <option>3–6 měsíců</option>
-              <option>6+ měsíců</option>
-            </select>
-            <select required name="callback">
-              <option value="">Kdy vám mám zavolat?</option>
-              <option>Dnes</option>
-              <option>Zítra</option>
-              <option>Po–Pá 9–12</option>
-              <option>Po–Pá 12–17</option>
-              <option>Po–Pá 17–20</option>
-            </select>
-          </div>
-
-          <textarea name="note" placeholder="Adresa / dispozice / stav / co je problém (volitelné)"></textarea>
-
-          <button type="submit">Odeslat</button>
-
-          <p class="small" style="margin:10px 0 0">
-            Odesláním souhlasíte se zpracováním údajů za účelem kontaktování.
-          </p>
-
-          <!-- pro Formspree: kam přijde odpověď -->
-          <input type="hidden" name="_replyto" value="email@domena.cz" />
-        </form>
-
-        <div class="hr"></div>
-
-        <p class="small">
-          Preferuješ telefon? <a class="btn2" style="display:block;margin-top:8px" href="tel:+420123456789">Zavolat teď</a>
-        </p>
-      </aside>
-    </main>
-
-    <div style="height:60px"></div>
+    </div>
   </div>
 
-  <div class="sticky">
-    <div class="wrap">
-      <a class="btn2" href="tel:+420123456789">Zavolat</a>
+  <div class="wrap" id="top">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="heroGrid">
+
+        <!-- LEFT: video + headline -->
+        <div class="heroLeft">
+          <div class="heroMedia">
+            <!-- TODO: nahraď video souborem (hero.mp4) nebo smaž <video> a nech jen background -->
+            <video autoplay muted loop playsinline>
+              <source src="hero.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <div class="heroOverlay">
+            <div class="kicker">
+              <span class="dot"></span>
+              <span>Prodejní plán do 48 hodin</span>
+              <span class="dot"></span>
+              <span>zpětný kontakt do 24 h (Po–So)</span>
+            </div>
+
+            <h1>Prodej bez chaosu.<br><span style="color:rgba(245,247,255,.78)">Cena, marketing, vyjednávání.</span></h1>
+
+            <p class="sub">
+              Pošlete základní informace o nemovitosti. Dostanete návrh strategie ceny + plán prodeje
+              (co přesně se bude dít, v jakém pořadí, a kde se typicky ztrácí peníze).
+            </p>
+
+            <div class="heroActions">
+              <a class="btn" href="#formular">Chci prodejní plán</a>
+              <a class="btnGhost" href="#proces">Jak to probíhá</a>
+              <a class="btnGhost" href="#dukazy">Ukázky práce</a>
+            </div>
+
+            <div class="heroNote">
+              TODO: tady dej jednu tvrdou diferenciaci (ne frázi). Např. „Specializace: Praha-západ, domy a byty 4–15 mil.“
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT: form -->
+        <aside class="panel" id="formular">
+          <div class="panelHeader">
+            <b>Získat prodejní plán</b>
+            <p>Vyplň 30–60 sekund. Čím konkrétnější data, tím přesnější návrh.</p>
+          </div>
+
+          <!-- POZN.: GitHub Pages je statika => formulář musí jít do služby (Formspree/Netlify Forms/Make).
+               TODO: nahraď FORM_ACTION reálnou URL. -->
+          <form action="FORM_ACTION" method="POST">
+            <input name="company" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div class="grid2">
+              <input required name="name" placeholder="Jméno" />
+              <input required name="phone" placeholder="Telefon" />
+            </div>
+
+            <div class="grid2">
+              <input required name="city" placeholder="Lokalita (město/část)" />
+              <select required name="type">
+                <option value="">Typ nemovitosti</option>
+                <option>Byt</option>
+                <option>Dům</option>
+                <option>Pozemek</option>
+                <option>Komerční</option>
+              </select>
+            </div>
+
+            <div class="grid2">
+              <select required name="timeline">
+                <option value="">Kdy chcete prodat?</option>
+                <option>0–3 měsíce</option>
+                <option>3–6 měsíců</option>
+                <option>6+ měsíců</option>
+              </select>
+              <select required name="callback">
+                <option value="">Kdy vám mám zavolat?</option>
+                <option>Dnes</option>
+                <option>Zítra</option>
+                <option>Po–Pá 9–12</option>
+                <option>Po–Pá 12–17</option>
+                <option>Po–Pá 17–20</option>
+              </select>
+            </div>
+
+            <textarea name="note" placeholder="Adresa / dispozice / stav / co je problém (volitelné)"></textarea>
+            <button class="submit" type="submit">Odeslat</button>
+
+            <div class="small">
+              Odesláním souhlasíte se zpracováním údajů za účelem kontaktování.
+              <!-- TODO: sem dej odkaz na zásady -->
+            </div>
+
+            <input type="hidden" name="_replyto" value="email@domena.cz" />
+          </form>
+
+          <div class="divider"></div>
+
+          <div class="miniRow">
+            <!-- TODO: uprav tel a email -->
+            <a class="btnGhost" href="tel:+420123456789">Zavolat</a>
+            <a class="btnGhost" href="mailto:email@domena.cz">Napsat</a>
+          </div>
+
+          <div class="small">
+            TODO: sem dej „co dostanete po odeslání“ (3 bullet body). Zvyšuje konverzi.
+          </div>
+        </aside>
+
+      </div>
+    </div>
+
+    <!-- BENEFITS -->
+    <section class="block" id="co">
+      <div class="sectionHead">
+        <div>
+          <h2>Co přesně nabízím</h2>
+          <p>Bez obecných keců. Vysvětlitelné kroky, které reálně zvedají výslednou cenu a snižují riziko.</p>
+        </div>
+      </div>
+
+      <div class="cards3">
+        <div class="card">
+          <b>Cenová strategie</b>
+          <p>Tržní pásmo, scénáře, rozhodovací body. Ne „tip ceny“.</p>
+          <div class="tagRow">
+            <span class="tag">analýza trhu</span>
+            <span class="tag">scénáře</span>
+            <span class="tag">taktika nabídky</span>
+          </div>
+        </div>
+        <div class="card">
+          <b>Marketing a prezentace</b>
+          <p>Foto/video/tekst + distribuce. Cíl: víc relevantních zájemců, ne zbytečný traffic.</p>
+          <div class="tagRow">
+            <span class="tag">prezentace</span>
+            <span class="tag">cílení</span>
+            <span class="tag">reporting</span>
+          </div>
+        </div>
+        <div class="card">
+          <b>Vyjednávání a právní bezpečí</b>
+          <p>Filtrace zájemců, tlak na cenu, smlouvy, úschova, převod, předání.</p>
+          <div class="tagRow">
+            <span class="tag">screening</span>
+            <span class="tag">vyjednávání</span>
+            <span class="tag">rizika</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROOF / CASES -->
+    <section class="block" id="dukazy">
+      <div class="sectionHead">
+        <div>
+          <h2>Důkazy (placeholdery)</h2>
+          <p>Tohle je část, která rozhoduje. Bez případů a ukázek budeš průměrný — i s krásným designem.</p>
+        </div>
+        <a class="pill" href="#formular">Chci plán</a>
+      </div>
+
+      <div class="cases">
+        <div class="card">
+          <div class="ph">FOTO / VIDEO 16:9</div>
+          <b style="margin-top:12px">Případ #1 — Byt 2+kk</b>
+          <p>Problém: ____. Strategie: ____. Výsledek: ____.</p>
+          <div class="tagRow">
+            <span class="tag">Praha-západ</span><span class="tag">10–14 dnů</span><span class="tag">cílené nabídky</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ph">FOTO / VIDEO 16:9</div>
+          <b style="margin-top:12px">Případ #2 — Rodinný dům</b>
+          <p>Problém: ____. Strategie: ____. Výsledek: ____.</p>
+          <div class="tagRow">
+            <span class="tag">Kladno</span><span class="tag">vyjednávání</span><span class="tag">právní servis</span>
+          </div>
+        </div>
+        <div class="card">
+          <div class="ph">FOTO / VIDEO 16:9</div>
+          <b style="margin-top:12px">Případ #3 — Pozemek</b>
+          <p>Problém: ____. Strategie: ____. Výsledek: ____.</p>
+          <div class="tagRow">
+            <span class="tag">územní plán</span><span class="tag">dokumentace</span><span class="tag">rizika</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="height:14px"></div>
+
+      <div class="cards3">
+        <div class="card">
+          <b>Ukázky marketingu</b>
+          <p>TODO: vlož 3 screenshoty (inzerát, video storyboard, report). To je „backstage důkaz“.</p>
+        </div>
+        <div class="card">
+          <b>Ukázky reportingu</b>
+          <p>TODO: i anonymizovaný report (počty prohlídek, feedback, změny strategie) zvyšuje důvěru.</p>
+        </div>
+        <div class="card">
+          <b>Externí recenze</b>
+          <p>TODO: sem dej odkaz na Google/Seznam + počet + průměr (pokud je pravda). Jinak nedávej.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="block" id="proces">
+      <div class="sectionHead">
+        <div>
+          <h2>Proces (jasně, velké, pochopitelné)</h2>
+          <p>Prodávající chce vědět: co se bude dít, kdy, a kdo nese riziko. Tady to dostane.</p>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <b>Diagnostika</b>
+            <p>Cíl, čas, limity, rizika. Co je potřeba připravit a co je zbytečnost.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <b>Strategie ceny</b>
+            <p>Pásmo, scénáře, rozhodovací body. Kdy přitlačit, kdy držet.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <b>Prezentace</b>
+            <p>Foto/video/text + příprava prohlídek. Cíl: kvalitní zájemci, ne spam.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <div>
+            <b>Prohlídky a vyjednávání</b>
+            <p>Filtrace, tlak na cenu, práce s námitkami, minimalizace rizika „odpadnutí“.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">5</div>
+          <div>
+            <b>Dokončení</b>
+            <p>Smlouvy, úschova, převod, předání. Bez improvizace a bez zbytečných průšvihů.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="num">6</div>
+          <div>
+            <b>Reporting</b>
+            <p>Průběžné info: co se děje, co zjišťujeme, co měníme. Bez mlhy.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="block" id="reference">
+      <div class="sectionHead">
+        <div>
+          <h2>Reference (krátké, skenovatelné)</h2>
+          <p>Nedávej 40 odstavců. Vyber 6–9 nejlepších. Délku nech na detailní stránce, pokud vůbec.</p>
+        </div>
+      </div>
+
+      <div class="strip">
+        <div class="quote">
+          <p>TODO: „Vše zařídil, ušetřil nám úřady, rychlá komunikace, prodáno za ____.“</p>
+          <b>Jméno, lokalita • typ nemovitosti</b>
+        </div>
+        <div class="quote">
+          <p>TODO: „Skvělá prezentace a vyjednávání. Bez stresu.“</p>
+          <b>Jméno, lokalita • typ nemovitosti</b>
+        </div>
+        <div class="quote">
+          <p>TODO: „Přesný proces, žádné sliby, jen výsledky.“</p>
+          <b>Jméno, lokalita • typ nemovitosti</b>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="block" id="faq">
+      <div class="sectionHead">
+        <div>
+          <h2>FAQ (námitky, které zabíjí leady)</h2>
+          <p>Odpovědi musí být konkrétní. Jakmile začneš mlžit, konverze padá.</p>
+        </div>
+      </div>
+
+      <div class="faq">
+        <details>
+          <summary>Kolik stojí provize a co je v ceně?</summary>
+          <p>TODO: napiš jasný rozsah / model + co přesně zahrnuje (marketing, právní servis, úschova, atd.).</p>
+        </details>
+        <details>
+          <summary>Jak rychle se dá prodat?</summary>
+          <p>TODO: uveď typické rozpětí a co ho nejvíc ovlivňuje (cena, stav, lokalita, sezóna).</p>
+        </details>
+        <details>
+          <summary>Co když mám kupce sám?</summary>
+          <p>TODO: nabídni variantu „vyjednávání + právní bezpečí“ (jiná cena / balíček).</p>
+        </details>
+        <details>
+          <summary>Jaké dokumenty budete potřebovat?</summary>
+          <p>TODO: stručný seznam + „zbytek zařídím / pomůžu“ (jen když je to pravda).</p>
+        </details>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="block">
+      <div class="final">
+        <div>
+          <h3>Chcete prodejní plán do 48 hodin?</h3>
+          <p>Vyplňte formulář. První krok je diagnostika — bez ní je to hádání a ztráta peněz.</p>
+          <div class="heroActions" style="margin-top:12px">
+            <a class="btn" href="#formular">Chci prodejní plán</a>
+            <a class="btnGhost" href="tel:+420123456789">Zavolat teď</a>
+          </div>
+          <div class="heroNote" style="margin-top:8px">
+            TODO: přidej jednu větu „pro koho to je“ a „pro koho ne“ (kvalifikace = vyšší důvěra).
+          </div>
+        </div>
+
+        <div class="card">
+          <b>Checklist (placeholder)</b>
+          <p>Co od vás potřebuji pro první návrh:</p>
+          <ul style="margin:10px 0 0 18px; color:var(--mut); line-height:1.55">
+            <li>Lokalita a typ nemovitosti</li>
+            <li>Dispozice / plocha / stav</li>
+            <li>Časový horizont prodeje</li>
+            <li>1–2 věci, které vás nejvíc trápí</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footGrid">
+        <div>
+          <b style="color:var(--txt)">Jméno Příjmení</b><br/>
+          <span>Prodej nemovitostí • Praha a okolí</span>
+        </div>
+        <div class="right">
+          <a href="tel:+420123456789">+420 123 456 789</a> •
+          <a href="mailto:email@domena.cz">email@domena.cz</a><br/>
+          <span>© 2026 • TODO: IČO / údaje • Zásady zpracování</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- MOBILE STICKY -->
+  <div class="mobileSticky" role="navigation" aria-label="Rychlé akce">
+    <div class="row">
+      <a class="btnGhost" href="tel:+420123456789">Zavolat</a>
       <a class="btn" href="#formular">Prodejní plán</a>
     </div>
   </div>
 
   <script>
-    // Anti-spam: pokud vyplní honeypot, zablokuj submit
+    // Anti-spam: honeypot
     document.querySelectorAll("form").forEach(f => {
       f.addEventListener("submit", (e) => {
         const hp = f.querySelector('input[name="company"]');
