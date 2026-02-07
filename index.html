@@ -3,40 +3,33 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Jméno Příjmení — realitní makléř (Praha a okolí)</title>
-  <meta name="description" content="Prodej nemovitostí bez chaosu. Proces, ukázky práce, reference. Praha a okolí." />
+  <title>RNDr. Jiří Zimmer — certifikovaný realitní makléř (Praha a Středočeský kraj)</title>
+  <meta name="description" content="Zprostředkování prodeje nemovitostí za co nejvyšší cenu, v co možná nejkratším čase s minimalizací rizik. Praha a Středočeský kraj." />
 
-  <!-- TODO: uprav -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Jméno Příjmení — realitní makléř" />
-  <meta property="og:description" content="Proces, ukázky práce, reference. Praha a okolí." />
-  <meta property="og:url" content="https://tvoje-domena.cz" />
+  <meta property="og:title" content="RNDr. Jiří Zimmer — certifikovaný realitní makléř" />
+  <meta property="og:description" content="Prodej nemovitostí: cena, rychlost, minimalizace rizik. Praha a Středočeský kraj." />
 
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
-    "name": "Jméno Příjmení",
-    "telephone": "+420123456789",
-    "email": "email@domena.cz",
-    "areaServed": "Praha a okolí",
-    "url": "https://tvoje-domena.cz"
+    "@context":"https://schema.org",
+    "@type":"RealEstateAgent",
+    "name":"RNDr. Jiří Zimmer",
+    "description":"Certifikovaný realitní makléř. Specializace na zprostředkování prodeje nemovitostí za co nejvyšší cenu, v co možná nejkratším čase s minimalizací rizik.",
+    "areaServed":"Praha a Středočeský kraj"
   }
   </script>
 
   <style>
     :root{
-      --bg:#0b0c0f;
-      --bg2:#0f1117;
+      --bg:#0b0c0f; --bg2:#0f1117;
       --card:rgba(255,255,255,.06);
       --bd:rgba(255,255,255,.12);
       --txt:#f5f7ff;
       --mut:rgba(245,247,255,.72);
       --mut2:rgba(245,247,255,.52);
-      --shadow: 0 18px 45px rgba(0,0,0,.45);
-      --r:22px;
-      --r2:16px;
-      --w:1120px;
+      --shadow:0 18px 45px rgba(0,0,0,.45);
+      --r:22px; --r2:16px; --w:1120px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -50,7 +43,7 @@
         linear-gradient(180deg, var(--bg), var(--bg2));
     }
     a{color:inherit}
-    .wrap{max-width:var(--w); margin:0 auto; padding: 22px 18px}
+    .wrap{max-width:var(--w); margin:0 auto; padding:22px 18px}
     .nav{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
@@ -59,9 +52,9 @@
     }
     .nav .inner{
       display:flex; align-items:center; justify-content:space-between; gap:14px;
-      max-width:var(--w); margin:0 auto; padding: 12px 18px;
+      max-width:var(--w); margin:0 auto; padding:12px 18px;
     }
-    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; min-width:180px}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; min-width:200px}
     .logo{
       width:38px; height:38px; border-radius:14px;
       background: linear-gradient(135deg, rgba(255,255,255,.26), rgba(255,255,255,.05));
@@ -73,7 +66,6 @@
     .menu{display:none; gap:16px; align-items:center}
     .menu a{color:var(--mut); text-decoration:none; font-size:13px}
     .menu a:hover{color:var(--txt)}
-    .cta{display:flex; gap:10px; align-items:center}
     .pill{
       border:1px solid rgba(255,255,255,.14);
       background: rgba(255,255,255,.06);
@@ -98,8 +90,7 @@
     .btn:hover{opacity:.92}
     @media(min-width:980px){.menu{display:flex}}
 
-    /* HERO */
-    .hero{padding: 22px 0 6px}
+    .hero{padding:22px 0 6px}
     .heroGrid{display:grid; gap:18px}
     @media(min-width:980px){.heroGrid{grid-template-columns:1.05fr .95fr; align-items:stretch}}
     .heroCard{
@@ -109,13 +100,13 @@
       box-shadow: var(--shadow);
       background: rgba(255,255,255,.05);
       position:relative;
-      min-height: 420px;
+      min-height: 430px;
     }
     .heroMedia{
       position:absolute; inset:0;
       background:
         radial-gradient(900px 600px at 15% 15%, rgba(255,255,255,.18), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.75));
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.78));
     }
     .heroMedia img{
       position:absolute; inset:0;
@@ -126,14 +117,14 @@
     }
     .heroOverlay{
       position:absolute; inset:0;
-      padding: 26px 22px;
+      padding:26px 22px;
       display:flex; flex-direction:column; justify-content:flex-end;
       gap:14px;
     }
     .kicker{color:var(--mut); font-size:13px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
     .dot{width:6px; height:6px; border-radius:99px; background: rgba(255,255,255,.75); display:inline-block}
     h1{margin:0; font-size: clamp(34px, 4.1vw, 56px); line-height:1.03; letter-spacing:-0.6px}
-    .sub{margin:0; color:var(--mut); font-size: clamp(15px, 1.35vw, 18px); line-height:1.55; max-width: 60ch}
+    .sub{margin:0; color:var(--mut); font-size: clamp(15px, 1.35vw, 18px); line-height:1.55; max-width: 62ch}
     .heroActions{display:flex; gap:10px; flex-wrap:wrap}
     .ghost{
       border:1px solid rgba(255,255,255,.18);
@@ -148,13 +139,12 @@
     }
     .ghost:hover{background: rgba(255,255,255,.10)}
 
-    /* Right info panel */
     .panel{
       border:1px solid rgba(255,255,255,.12);
       border-radius: var(--r);
       background: rgba(255,255,255,.06);
       box-shadow: var(--shadow);
-      padding: 18px;
+      padding:18px;
       display:flex; flex-direction:column; gap:14px;
     }
     .panel b{font-size:16px; letter-spacing:.2px}
@@ -171,9 +161,8 @@
     .kpi small{display:block; color:var(--mut2); margin-top:6px; line-height:1.45}
     .small{color:var(--mut2); font-size:12px; line-height:1.45}
 
-    /* Sections */
-    section.block{padding: 34px 0}
-    .sectionHead{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom: 16px}
+    section.block{padding:34px 0}
+    .sectionHead{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom:16px}
     .sectionHead h2{margin:0; font-size: clamp(20px, 2.2vw, 28px); letter-spacing:-0.3px}
     .sectionHead p{margin:0; color:var(--mut); font-size:14px; line-height:1.5; max-width: 78ch}
     .cards3{display:grid; gap:12px}
@@ -187,66 +176,7 @@
     .card b{display:block; margin-bottom:6px}
     .card p{margin:0; color:var(--mut); font-size:14px; line-height:1.55}
 
-    /* Cases */
-    .cases{display:grid; gap:12px}
-    @media(min-width:980px){.cases{grid-template-columns:repeat(3,1fr)}}
-    .ph{
-      border-radius: 14px;
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.16), rgba(255,255,255,.04)),
-        radial-gradient(600px 260px at 20% 20%, rgba(255,255,255,.14), transparent 55%);
-      height: 170px;
-      display:flex; align-items:center; justify-content:center;
-      color: rgba(245,247,255,.65);
-      font-weight: 800;
-      letter-spacing:.2px;
-    }
-
-    /* Process */
-    .steps{display:grid; gap:12px}
-    @media(min-width:980px){.steps{grid-template-columns:1fr 1fr}}
-    .step{
-      display:flex; gap:12px;
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      border-radius: var(--r2);
-      padding: 14px;
-    }
-    .num{
-      width:38px; height:38px; border-radius:14px;
-      background: rgba(255,255,255,.92);
-      color:#0b0c0f;
-      display:flex; align-items:center; justify-content:center;
-      font-weight: 900;
-    }
-    .step b{display:block; margin-bottom:4px}
-    .step p{margin:0; color:var(--mut); font-size:14px; line-height:1.55}
-
-    /* Testimonials */
-    .strip{display:grid; gap:12px}
-    @media(min-width:980px){.strip{grid-template-columns:1fr 1fr 1fr}}
-    .quote{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.06);
-      border-radius: var(--r2);
-      padding: 14px;
-      position:relative;
-      overflow:hidden;
-    }
-    .quote:before{
-      content:"“";
-      position:absolute;
-      top:-18px; left:10px;
-      font-size: 84px;
-      color: rgba(255,255,255,.12);
-      font-weight: 900;
-    }
-    .quote p{margin:0; color:var(--mut); font-size:14px; line-height:1.55}
-    .quote b{display:block; margin-top:10px; font-size:13px}
-
-    /* Footer */
-    footer{padding: 26px 0 40px; color:var(--mut2); font-size:12px}
+    footer{padding:26px 0 40px; color:var(--mut2); font-size:12px}
     .footGrid{display:grid; gap:10px}
     @media(min-width:980px){.footGrid{grid-template-columns:1fr 1fr; align-items:center}}
     .right{text-align:left}
@@ -255,218 +185,115 @@
 </head>
 
 <body>
-
   <div class="nav">
     <div class="inner">
-      <a class="brand" href="#top">
+      <a class="brand" href="index.html">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <b>Jméno Příjmení</b>
-          <span>Prodej nemovitostí • Praha a okolí</span>
+          <b>RNDr. Jiří Zimmer</b>
+          <span>Certifikovaný realitní makléř</span>
         </div>
       </a>
 
       <nav class="menu" aria-label="Navigace">
-        <a href="#sluzby">Služby</a>
-        <a href="#proces">Proces</a>
-        <a href="#dukazy">Ukázky</a>
-        <a href="#reference">Reference</a>
-        <a href="#kontakt">Kontakt</a>
+        <a href="proces.html">Postup prodeje</a>
+        <a href="videa.html">Videa</a>
+        <a href="reference.html">Reference</a>
+        <a href="kontakt.html">Kontakt</a>
       </nav>
 
-      <div class="cta">
-        <!-- TODO: uprav -->
-        <a class="pill" href="tel:+420123456789">Zavolat</a>
-        <a class="btn" href="#kontakt">Kontakt</a>
+      <div style="display:flex;gap:10px;align-items:center">
+        <a class="pill" href="kontakt.html">Praha + Středočeský kraj</a>
+        <a class="btn" href="kontakt.html">Kontakt</a>
       </div>
     </div>
   </div>
 
-  <div class="wrap" id="top">
+  <div class="wrap">
 
-    <!-- HERO -->
     <div class="hero">
       <div class="heroGrid">
 
         <div class="heroCard">
           <div class="heroMedia">
-            <!-- TODO: nahraď reálnou fotkou (portrait/hero) -->
-            <img src="hero.jpg" alt="Portrét makléře (placeholder)" loading="lazy">
+            <!-- TODO: vlož portrét nebo hero fotku -->
+            <img src="assets/img/hero.jpg" alt="Portrét / hero fotografie (placeholder)" loading="lazy">
           </div>
 
           <div class="heroOverlay">
             <div class="kicker">
-              <span class="dot"></span><span>Makléř pro prodej nemovitostí</span>
-              <span class="dot"></span><span>Praha a okolí</span>
+              <span class="dot"></span><span>Praha a Středočeský kraj</span>
+              <span class="dot"></span><span>Prodej nemovitostí</span>
+              <span class="dot"></span><span>Minimalizace rizik</span>
             </div>
 
-            <h1>Klidný prodej.<br><span style="color:rgba(245,247,255,.78)">Tvrdý proces. Jasná komunikace.</span></h1>
+            <h1>Prodej za co nejvyšší cenu.<br><span style="color:rgba(245,247,255,.78)">V co možná nejkratším čase.</span></h1>
 
             <p class="sub">
-              TODO: 2–3 věty fakticky: specializace, typ nemovitostí, jak pracuješ (bez frází typu „poctivost“).
+              Jsem certifikovaný realitní makléř. Specializuji se na zprostředkování prodeje nemovitostí s důrazem na cenu, rychlost a minimalizaci rizik.
             </p>
 
             <div class="heroActions">
-              <a class="btn" href="tel:+420123456789">Zavolat</a>
-              <a class="ghost" href="mailto:email@domena.cz">Napsat email</a>
-              <a class="ghost" href="#proces">Jak pracuji</a>
+              <a class="btn" href="proces.html">Postup prodeje</a>
+              <a class="ghost" href="videa.html">Videa</a>
+              <a class="ghost" href="reference.html">Reference</a>
             </div>
           </div>
         </div>
 
-        <aside class="panel" aria-label="Rychlé informace">
+        <aside class="panel">
           <b>Rychlé informace</b>
-          <p>Krátké, konkrétní, ověřitelné. Tady se buduje důvěra.</p>
+          <p>Konkrétní rámec toho, co dělám a jak. Bez frází.</p>
           <div class="line"></div>
 
           <div class="kpis">
             <div class="kpi">
-              <b>Odezva</b>
-              <small>TODO: „do 24 h (Po–So)“ nebo realita.</small>
+              <b>Působnost</b>
+              <small>Praha a Středočeský kraj</small>
             </div>
             <div class="kpi">
               <b>Specializace</b>
-              <small>TODO: lokalita + segment (např. byty/domy 4–15 mil.).</small>
+              <small>Prodej nemovitostí za co nejvyšší cenu v co možná nejkratším čase s minimalizací rizik</small>
             </div>
             <div class="kpi">
-              <b>Transparentnost</b>
-              <small>TODO: rámec provize / co je v ceně (bez mlhy).</small>
+              <b>Marketing</b>
+              <small>Foto/video, homestaging, inzerce na hlavních serverech + sociální sítě</small>
             </div>
             <div class="kpi">
-              <b>Externí recenze</b>
-              <small>TODO: odkaz na Google/Seznam + počet (pokud existuje).</small>
+              <b>Právní bezpečí</b>
+              <small>Advokát, úschova, katastr, předání a přepisy energií</small>
             </div>
           </div>
 
           <div class="line"></div>
           <div class="small">
-            TODO: sem dej IČO / sídlo / licencování, pokud relevantní. To je trust signál.
+            Pozn.: detaily postupu a co je v provizi jsou rozepsány v sekci <a href="proces.html">Postup prodeje</a>.
           </div>
         </aside>
 
       </div>
     </div>
 
-    <!-- SERVICES -->
-    <section class="block" id="sluzby">
+    <section class="block">
       <div class="sectionHead">
         <div>
-          <h2>S čím pomohu</h2>
-          <p>Informativní web = vysvětlit, co přesně děláš. Ne co „cítíš“.</p>
+          <h2>Co pro klienta zajišťuji</h2>
+          <p>V rámci dohodnuté provize zajišťuji a hradím přípravu, marketing, právní servis a celý průběh prodeje. Klient nic neplatí předem a je minimálně časově zatěžován.</p>
         </div>
       </div>
 
       <div class="cards3">
         <div class="card">
-          <b>Prodej nemovitosti</b>
-          <p>TODO: 2–3 konkrétní body (strategie ceny, marketing, vyjednávání, právní kroky).</p>
+          <b>Příprava a prezentace</b>
+          <p>Úklid / homestaging, foto a video, kvalitní prezentace a zveřejnění nabídky.</p>
         </div>
         <div class="card">
-          <b>Odhad a strategie</b>
-          <p>TODO: jak děláš odhad (pásmo, srovnání, scénáře), ne „odhaduji dobře“.</p>
+          <b>Prohlídky a prověření zájemce</b>
+          <p>Prohlídky řeším sám; šetřím čas prodávajícího. Vážného zájemce prověřím a informace předám prodávajícímu.</p>
         </div>
         <div class="card">
-          <b>Právní a procesní bezpečí</b>
-          <p>TODO: smlouvy, úschova, převod, předání — co hlídáš a proč.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="block" id="proces">
-      <div class="sectionHead">
-        <div>
-          <h2>Jak pracuji</h2>
-          <p>Proces = důvěra. Když je to konkrétní, působíš jako profík.</p>
-        </div>
-      </div>
-
-      <div class="steps">
-        <div class="step"><div class="num">1</div><div><b>Diagnostika</b><p>TODO: co zjišťuješ a proč.</p></div></div>
-        <div class="step"><div class="num">2</div><div><b>Cenová strategie</b><p>TODO: pásmo, scénáře, rozhodovací body.</p></div></div>
-        <div class="step"><div class="num">3</div><div><b>Prezentace</b><p>TODO: foto/video/text, příprava prohlídek.</p></div></div>
-        <div class="step"><div class="num">4</div><div><b>Prohlídky</b><p>TODO: filtrace zájemců, feedback, reporting.</p></div></div>
-        <div class="step"><div class="num">5</div><div><b>Vyjednávání</b><p>TODO: taktiky a ochrana ceny.</p></div></div>
-        <div class="step"><div class="num">6</div><div><b>Dokončení</b><p>TODO: smlouvy, úschova, převod, předání.</p></div></div>
-      </div>
-    </section>
-
-    <!-- PROOF -->
-    <section class="block" id="dukazy">
-      <div class="sectionHead">
-        <div>
-          <h2>Ukázky práce</h2>
-          <p>Ne marketingové sliby. Ukázky: prezentace, reporting, výsledky (v mezích reality).</p>
-        </div>
-      </div>
-
-      <div class="cases">
-        <div class="card">
-          <div class="ph">FOTO / VIDEO 16:9</div>
-          <b style="margin-top:12px">Případ #1 (placeholder)</b>
-          <p>TODO: Lokalita • Typ • Problém • Strategie • Výsledek.</p>
-        </div>
-        <div class="card">
-          <div class="ph">FOTO / VIDEO 16:9</div>
-          <b style="margin-top:12px">Případ #2 (placeholder)</b>
-          <p>TODO: Lokalita • Typ • Problém • Strategie • Výsledek.</p>
-        </div>
-        <div class="card">
-          <div class="ph">FOTO / VIDEO 16:9</div>
-          <b style="margin-top:12px">Případ #3 (placeholder)</b>
-          <p>TODO: Lokalita • Typ • Problém • Strategie • Výsledek.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="block" id="reference">
-      <div class="sectionHead">
-        <div>
-          <h2>Reference</h2>
-          <p>Krátké, skenovatelné. Ideálně doplněné o externí profil (Google/Seznam).</p>
-        </div>
-      </div>
-
-      <div class="strip">
-        <div class="quote">
-          <p>TODO: „Konkrétní věc, která se povedla…“</p>
-          <b>Jméno • lokalita • typ nemovitosti</b>
-        </div>
-        <div class="quote">
-          <p>TODO: „Konkrétní věc, která se povedla…“</p>
-          <b>Jméno • lokalita • typ nemovitosti</b>
-        </div>
-        <div class="quote">
-          <p>TODO: „Konkrétní věc, která se povedla…“</p>
-          <b>Jméno • lokalita • typ nemovitosti</b>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section class="block" id="kontakt">
-      <div class="sectionHead">
-        <div>
-          <h2>Kontakt</h2>
-          <p>Jednoduše. Bez formulářů, pokud chceš čistě informační web.</p>
-        </div>
-      </div>
-
-      <div class="cards3">
-        <div class="card">
-          <b>Telefon</b>
-          <p><a href="tel:+420123456789">+420 123 456 789</a></p>
-          <p class="small">TODO: kdy volat (časové okno).</p>
-        </div>
-        <div class="card">
-          <b>Email</b>
-          <p><a href="mailto:email@domena.cz">email@domena.cz</a></p>
-          <p class="small">TODO: co do emailu poslat (lokalita + typ).</p>
-        </div>
-        <div class="card">
-          <b>Fakturační údaje</b>
-          <p class="small">TODO: IČO, sídlo, případně DIČ. + odkaz na zásady zpracování.</p>
+          <b>Vyjednávání a právní průběh</b>
+          <p>Blokovací depozitum, kupní smlouva od advokáta, advokátní úschova, katastr, předání a přepisy.</p>
         </div>
       </div>
     </section>
@@ -474,13 +301,12 @@
     <footer>
       <div class="footGrid">
         <div>
-          <b style="color:var(--txt)">Jméno Příjmení</b><br/>
-          <span>Prodej nemovitostí • Praha a okolí</span>
+          <b style="color:var(--txt)">RNDr. Jiří Zimmer</b><br/>
+          <span>Certifikovaný realitní makléř • Praha a Středočeský kraj</span>
         </div>
         <div class="right">
-          <a href="tel:+420123456789">+420 123 456 789</a> •
-          <a href="mailto:email@domena.cz">email@domena.cz</a><br/>
-          <span>© 2026 • TODO: IČO • TODO: Zásady zpracování</span>
+          <a href="kontakt.html">Kontakt</a> • <a href="proces.html">Postup prodeje</a> • <a href="reference.html">Reference</a><br/>
+          <span>© 2026 • TODO: doplň telefon, email, IČO, zásady</span>
         </div>
       </div>
     </footer>
