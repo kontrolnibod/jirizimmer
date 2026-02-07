@@ -44,6 +44,8 @@
     }
     a{color:inherit}
     .wrap{max-width:var(--w); margin:0 auto; padding:22px 18px}
+
+    /* NAV */
     .nav{
       position:sticky; top:0; z-index:50;
       backdrop-filter: blur(10px);
@@ -54,7 +56,7 @@
       display:flex; align-items:center; justify-content:space-between; gap:14px;
       max-width:var(--w); margin:0 auto; padding:12px 18px;
     }
-    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; min-width:200px}
+    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; min-width:240px}
     .logo{
       width:38px; height:38px; border-radius:14px;
       background: linear-gradient(135deg, rgba(255,255,255,.26), rgba(255,255,255,.05));
@@ -90,6 +92,7 @@
     .btn:hover{opacity:.92}
     @media(min-width:980px){.menu{display:flex}}
 
+    /* HERO */
     .hero{padding:22px 0 6px}
     .heroGrid{display:grid; gap:18px}
     @media(min-width:980px){.heroGrid{grid-template-columns:1.05fr .95fr; align-items:stretch}}
@@ -100,13 +103,13 @@
       box-shadow: var(--shadow);
       background: rgba(255,255,255,.05);
       position:relative;
-      min-height: 430px;
+      min-height: 440px;
     }
     .heroMedia{
       position:absolute; inset:0;
       background:
         radial-gradient(900px 600px at 15% 15%, rgba(255,255,255,.18), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.78));
+        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.80));
     }
     .heroMedia img{
       position:absolute; inset:0;
@@ -139,6 +142,7 @@
     }
     .ghost:hover{background: rgba(255,255,255,.10)}
 
+    /* PANEL */
     .panel{
       border:1px solid rgba(255,255,255,.12);
       border-radius: var(--r);
@@ -161,6 +165,7 @@
     .kpi small{display:block; color:var(--mut2); margin-top:6px; line-height:1.45}
     .small{color:var(--mut2); font-size:12px; line-height:1.45}
 
+    /* SECTIONS */
     section.block{padding:34px 0}
     .sectionHead{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom:16px}
     .sectionHead h2{margin:0; font-size: clamp(20px, 2.2vw, 28px); letter-spacing:-0.3px}
@@ -176,18 +181,85 @@
     .card b{display:block; margin-bottom:6px}
     .card p{margin:0; color:var(--mut); font-size:14px; line-height:1.55}
 
+    /* PROCESS */
+    .steps{display:grid; gap:12px}
+    @media(min-width:980px){.steps{grid-template-columns:1fr 1fr}}
+    .step{
+      display:flex; gap:12px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--r2);
+      padding: 14px;
+    }
+    .num{
+      width:38px; height:38px; border-radius:14px;
+      background: rgba(255,255,255,.92);
+      color:#0b0c0f;
+      display:flex; align-items:center; justify-content:center;
+      font-weight: 900;
+      flex:0 0 auto;
+    }
+    .step b{display:block; margin-bottom:4px}
+    .step p{margin:0; color:var(--mut); font-size:14px; line-height:1.55}
+    ul{margin:8px 0 0 18px; color:var(--mut); line-height:1.7}
+
+    /* VIDEO */
+    .videoGrid{display:grid; gap:12px}
+    @media(min-width:980px){.videoGrid{grid-template-columns:1fr 1fr}}
+    video{width:100%; border-radius:14px; border:1px solid rgba(255,255,255,.10); background:#000}
+
+    /* QUOTES */
+    .strip{display:grid; gap:12px}
+    @media(min-width:980px){.strip{grid-template-columns:1fr 1fr 1fr}}
+    .quote{
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      border-radius: var(--r2);
+      padding: 14px;
+      position:relative;
+      overflow:hidden;
+    }
+    .quote:before{
+      content:"“";
+      position:absolute;
+      top:-18px; left:10px;
+      font-size: 84px;
+      color: rgba(255,255,255,.12);
+      font-weight: 900;
+    }
+    .quote p{margin:0; color:var(--mut); font-size:14px; line-height:1.55}
+    .quote b{display:block; margin-top:10px; font-size:13px}
+
+    /* FOOTER */
     footer{padding:26px 0 40px; color:var(--mut2); font-size:12px}
     .footGrid{display:grid; gap:10px}
     @media(min-width:980px){.footGrid{grid-template-columns:1fr 1fr; align-items:center}}
     .right{text-align:left}
     @media(min-width:980px){.right{text-align:right}}
+
+    /* MOBILE STICKY */
+    .mobileSticky{
+      position:fixed; left:0; right:0; bottom:0; z-index:60;
+      background: rgba(10,12,16,.72);
+      border-top: 1px solid rgba(255,255,255,.10);
+      backdrop-filter: blur(10px);
+      padding: 10px 12px;
+    }
+    .mobileSticky .row{
+      max-width: var(--w);
+      margin:0 auto;
+      display:flex; gap:10px;
+    }
+    .mobileSticky a{flex:1; text-align:center}
+    @media(min-width:980px){.mobileSticky{display:none}}
+    .spacer{height:64px}
   </style>
 </head>
 
 <body>
   <div class="nav">
     <div class="inner">
-      <a class="brand" href="index.html">
+      <a class="brand" href="#top">
         <div class="logo" aria-hidden="true"></div>
         <div>
           <b>RNDr. Jiří Zimmer</b>
@@ -196,28 +268,30 @@
       </a>
 
       <nav class="menu" aria-label="Navigace">
-        <a href="proces.html">Postup prodeje</a>
-        <a href="videa.html">Videa</a>
-        <a href="reference.html">Reference</a>
-        <a href="kontakt.html">Kontakt</a>
+        <a href="#sluzby">Služby</a>
+        <a href="#proces">Postup</a>
+        <a href="#videa">Videa</a>
+        <a href="#reference">Reference</a>
+        <a href="#kontakt">Kontakt</a>
       </nav>
 
       <div style="display:flex;gap:10px;align-items:center">
-        <a class="pill" href="kontakt.html">Praha + Středočeský kraj</a>
-        <a class="btn" href="kontakt.html">Kontakt</a>
+        <a class="pill" href="#kontakt">Praha + Středočeský kraj</a>
+        <a class="btn" href="#kontakt">Kontakt</a>
       </div>
     </div>
   </div>
 
-  <div class="wrap">
+  <div class="wrap" id="top">
 
+    <!-- HERO -->
     <div class="hero">
       <div class="heroGrid">
 
         <div class="heroCard">
           <div class="heroMedia">
-            <!-- TODO: vlož portrét nebo hero fotku -->
-            <img src="assets/img/hero.jpg" alt="Portrét / hero fotografie (placeholder)" loading="lazy">
+            <!-- TODO: nahraď reálnou fotkou -->
+            <img src="assets/img/hero.jpg" alt="Portrét / hero fotografie" loading="lazy">
           </div>
 
           <div class="heroOverlay">
@@ -234,9 +308,9 @@
             </p>
 
             <div class="heroActions">
-              <a class="btn" href="proces.html">Postup prodeje</a>
-              <a class="ghost" href="videa.html">Videa</a>
-              <a class="ghost" href="reference.html">Reference</a>
+              <a class="btn" href="#proces">Postup prodeje</a>
+              <a class="ghost" href="#videa">Videa</a>
+              <a class="ghost" href="#reference">Reference</a>
             </div>
           </div>
         </div>
@@ -253,11 +327,11 @@
             </div>
             <div class="kpi">
               <b>Specializace</b>
-              <small>Prodej nemovitostí za co nejvyšší cenu v co možná nejkratším čase s minimalizací rizik</small>
+              <small>Prodej nemovitostí: co nejvyšší cena, co nejkratší čas, minimalizace rizik</small>
             </div>
             <div class="kpi">
               <b>Marketing</b>
-              <small>Foto/video, homestaging, inzerce na hlavních serverech + sociální sítě</small>
+              <small>Foto/video, úklid či homestaging, inzerce + sociální sítě</small>
             </div>
             <div class="kpi">
               <b>Právní bezpečí</b>
@@ -267,14 +341,15 @@
 
           <div class="line"></div>
           <div class="small">
-            Pozn.: detaily postupu a co je v provizi jsou rozepsány v sekci <a href="proces.html">Postup prodeje</a>.
+            Pozn.: V rámci provize zajišťuji a hradím přípravu, foto/video, prezentaci, advokáta i prohlídky — klient nic neplatí předem.
           </div>
         </aside>
 
       </div>
     </div>
 
-    <section class="block">
+    <!-- SLUZBY -->
+    <section class="block" id="sluzby">
       <div class="sectionHead">
         <div>
           <h2>Co pro klienta zajišťuji</h2>
@@ -285,15 +360,165 @@
       <div class="cards3">
         <div class="card">
           <b>Příprava a prezentace</b>
-          <p>Úklid / homestaging, foto a video, kvalitní prezentace a zveřejnění nabídky.</p>
+          <p>Úklid či homestaging, fotografie a video prohlídka, kvalitní prezentace nabídky.</p>
         </div>
         <div class="card">
           <b>Prohlídky a prověření zájemce</b>
-          <p>Prohlídky řeším sám; šetřím čas prodávajícího. Vážného zájemce prověřím a informace předám prodávajícímu.</p>
+          <p>Na prohlídky chodím vždy pouze já; šetřím čas prodávajícího a trvám na ceně dohodnuté s majitelem. Vážného zájemce prověřím a informace předám prodávajícímu.</p>
         </div>
         <div class="card">
           <b>Vyjednávání a právní průběh</b>
-          <p>Blokovací depozitum, kupní smlouva od advokáta, advokátní úschova, katastr, předání a přepisy.</p>
+          <p>Blokovací depozitum, kupní smlouva od advokáta, advokátní úschova, katastr, předání a přepisy energií a vody dle dohody stran.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCES -->
+    <section class="block" id="proces">
+      <div class="sectionHead">
+        <div>
+          <h2>Zprostředkování prodeje — postup</h2>
+          <p>Pořadí kroků a kontrola rizik. Makléř jedná vždy v zájmu klienta/prodávajícího.</p>
+        </div>
+        <a class="pill" href="#kontakt">Kontakt</a>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <div>
+            <b>Zprostředkovatelská smlouva (ZS)</b>
+            <p>Dohodneme: jaká nemovitost se prodává, za jakou částku, časový horizont a provize makléře.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">2</div>
+          <div>
+            <b>Marketing</b>
+            <p>Úklid či homestaging + foto/video. Zveřejnění na realitních serverech a na sociálních sítích.</p>
+            <ul>
+              <li>Sreality</li>
+              <li>iDNES Reality</li>
+              <li>HN reality</li>
+              <li>RealityMix</li>
+              <li>Osobní Facebook a Instagram</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">3</div>
+          <div>
+            <b>Prohlídky a prověření zájemce</b>
+            <p>Na prohlídky chodí vždy pouze makléř. Vážného zájemce prověřím a veškeré informace předám prodávajícímu.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">4</div>
+          <div>
+            <b>Blokovací depozitum → KS → advokátní úschova</b>
+            <p>Dohoda o složení blokovacího depozita je trojstranná (prodávající, kupující, makléř). Depozitum je ve výši provize makléře. Obvykle 4–6 týdnů na finalizaci hypotéky.</p>
+            <ul>
+              <li>Kupní smlouvu připraví advokát</li>
+              <li>Kupující skládá zbytek kupní ceny do advokátní úschovy</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">5</div>
+          <div>
+            <b>Katastr → předání → přepisy energií</b>
+            <p>Po obdržení kupní ceny advokát posílá návrh na vklad na katastr. Katastr standardně zapisuje změnu do 21 dnů, poté následuje předání a přepisy energií a vody dle dohody stran.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <b>Co je v provizi</b>
+          <p>V rámci provize (obvykle rovné blokovacímu depozitu) zajišťuji a hradím: přípravu na focení/video, fotografie/video, prezentaci na realitních serverech, advokáta, prohlídky, prověření a jednání se zájemci. Prodávající nic neplatí předem.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIDEA -->
+    <section class="block" id="videa">
+      <div class="sectionHead">
+        <div>
+          <h2>Videa</h2>
+          <p>Ukázky prezentace nemovitostí (placeholdery). Doporučení: videa hostovat mimo GitHub a vložit sem embed.</p>
+        </div>
+      </div>
+
+      <div class="videoGrid">
+        <!-- VARIANTA 1: lokální video (assets/video/video-1.mp4) -->
+        <div class="card">
+          <b>Video #1</b>
+          <p class="small">Pokud hostuješ lokálně: <code>assets/video/video-1.mp4</code></p>
+          <video controls preload="metadata">
+            <source src="assets/video/video-1.mp4" type="video/mp4">
+          </video>
+        </div>
+
+        <!-- VARIANTA 2: embed (doporučeno) -->
+        <div class="card">
+          <b>Video #2 (embed)</b>
+          <p class="small">Vlož sem iframe z YouTube/Vimeo (unlisted).</p>
+          <div style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;color:rgba(245,247,255,.65);font-weight:700">
+            SEM PATŘÍ IFRAME
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- REFERENCE -->
+    <section class="block" id="reference">
+      <div class="sectionHead">
+        <div>
+          <h2>Reference</h2>
+          <p>Externí zdroje nejsou; u každé reference doporučuji doplnit 1 větu (typ nemovitosti / co bylo klíčové).</p>
+        </div>
+      </div>
+
+      <div class="strip">
+        <div class="quote"><p>Ing. Bohumil Kolář a Zdena Kolářová</p><b>TODO: 1 věta kontext</b></div>
+        <div class="quote"><p>Vojtěch Štefka Ph.D.</p><b>TODO: 1 věta kontext</b></div>
+        <div class="quote"><p>Josef Němec</p><b>TODO: 1 věta kontext</b></div>
+
+        <div class="quote"><p>Bc. Kateřina Šmídová</p><b>TODO: 1 věta kontext</b></div>
+        <div class="quote"><p>Věra Leitnerová</p><b>TODO: 1 věta kontext</b></div>
+        <div class="quote"><p>Josef Kušmírek</p><b>TODO: 1 věta kontext</b></div>
+
+        <div class="quote"><p>Mgr. Markéta Šulcová</p><b>TODO: 1 věta kontext</b></div>
+        <div class="quote"><p>Jana Zdeňková</p><b>TODO: 1 věta kontext</b></div>
+        <div class="quote"><p>Pavel Křenek</p><b>TODO: 1 věta kontext</b></div>
+      </div>
+    </section>
+
+    <!-- KONTAKT -->
+    <section class="block" id="kontakt">
+      <div class="sectionHead">
+        <div>
+          <h2>Kontakt</h2>
+          <p>Působnost: Praha a Středočeský kraj.</p>
+        </div>
+      </div>
+
+      <div class="cards3">
+        <div class="card">
+          <b>Telefon</b>
+          <p><a href="tel:+420123456789">+420 123 456 789</a></p>
+          <p class="small">TODO: doplň reálné číslo</p>
+        </div>
+        <div class="card">
+          <b>Email</b>
+          <p><a href="mailto:email@domena.cz">email@domena.cz</a></p>
+          <p class="small">TODO: doplň reálný email</p>
+        </div>
+        <div class="card">
+          <b>Údaje</b>
+          <p class="small">TODO: IČO / sídlo / zásady zpracování osobních údajů.</p>
         </div>
       </div>
     </section>
@@ -305,12 +530,20 @@
           <span>Certifikovaný realitní makléř • Praha a Středočeský kraj</span>
         </div>
         <div class="right">
-          <a href="kontakt.html">Kontakt</a> • <a href="proces.html">Postup prodeje</a> • <a href="reference.html">Reference</a><br/>
-          <span>© 2026 • TODO: doplň telefon, email, IČO, zásady</span>
+          <a href="#kontakt">Kontakt</a> • <a href="#proces">Postup</a> • <a href="#reference">Reference</a><br/>
+          <span>© 2026 • TODO: Telefon • TODO: Email • TODO: IČO</span>
         </div>
       </div>
     </footer>
 
+    <div class="spacer"></div>
+  </div>
+
+  <div class="mobileSticky" role="navigation" aria-label="Rychlé akce">
+    <div class="row">
+      <a class="pill" href="tel:+420123456789">Zavolat</a>
+      <a class="btn" href="#kontakt">Kontakt</a>
+    </div>
   </div>
 </body>
 </html>
