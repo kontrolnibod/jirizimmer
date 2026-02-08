@@ -92,10 +92,8 @@
     .btn:hover{opacity:.92}
     @media(min-width:980px){.menu{display:flex}}
 
-    /* HERO */
-    .hero{padding:22px 0 6px}
-    .heroGrid{display:grid; gap:18px}
-    @media(min-width:980px){.heroGrid{grid-template-columns:1.05fr .95fr; align-items:stretch}}
+    /* HERO FULL WIDTH */
+    .hero{padding:22px 0 8px}
     .heroCard{
       border:1px solid rgba(255,255,255,.10);
       border-radius: var(--r);
@@ -103,31 +101,34 @@
       box-shadow: var(--shadow);
       background: rgba(255,255,255,.05);
       position:relative;
-      min-height: 440px;
+      min-height: clamp(520px, 60vh, 720px);
     }
     .heroMedia{
       position:absolute; inset:0;
       background:
         radial-gradient(900px 600px at 15% 15%, rgba(255,255,255,.18), transparent 55%),
-        linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.80));
+        linear-gradient(180deg, rgba(0,0,0,.08), rgba(0,0,0,.86));
     }
     .heroMedia img{
       position:absolute; inset:0;
       width:100%; height:100%;
       object-fit:cover;
-      opacity:.65;
-      filter:saturate(1.05) contrast(1.05);
+      /* TADY LADÍŠ, CO JE NA FOTCE VIDĚT */
+      object-position: center 18%;
+      opacity:.72;
+      filter:saturate(1.05) contrast(1.06);
+      transform: scale(1.02);
     }
     .heroOverlay{
       position:absolute; inset:0;
-      padding:26px 22px;
+      padding: 28px 24px;
       display:flex; flex-direction:column; justify-content:flex-end;
       gap:14px;
     }
     .kicker{color:var(--mut); font-size:13px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
     .dot{width:6px; height:6px; border-radius:99px; background: rgba(255,255,255,.75); display:inline-block}
-    h1{margin:0; font-size: clamp(34px, 4.1vw, 56px); line-height:1.03; letter-spacing:-0.6px}
-    .sub{margin:0; color:var(--mut); font-size: clamp(15px, 1.35vw, 18px); line-height:1.55; max-width: 62ch}
+    h1{margin:0; font-size: clamp(36px, 4.2vw, 64px); line-height:1.02; letter-spacing:-0.8px}
+    .sub{margin:0; color:var(--mut); font-size: clamp(15px, 1.35vw, 19px); line-height:1.55; max-width: 72ch}
     .heroActions{display:flex; gap:10px; flex-wrap:wrap}
     .ghost{
       border:1px solid rgba(255,255,255,.18);
@@ -141,37 +142,23 @@
       white-space:nowrap;
     }
     .ghost:hover{background: rgba(255,255,255,.10)}
-
-    /* PANEL */
-    .panel{
-      border:1px solid rgba(255,255,255,.12);
-      border-radius: var(--r);
-      background: rgba(255,255,255,.06);
-      box-shadow: var(--shadow);
-      padding:18px;
-      display:flex; flex-direction:column; gap:14px;
+    .heroNote{
+      margin-top:2px;
+      color: var(--mut2);
+      font-size:12px;
+      line-height:1.45;
+      max-width: 80ch;
     }
-    .panel b{font-size:16px; letter-spacing:.2px}
-    .panel p{margin:0; color:var(--mut); font-size:14px; line-height:1.55}
-    .line{height:1px; background: rgba(255,255,255,.10)}
-    .kpis{display:grid; gap:10px}
-    @media(min-width:560px){.kpis{grid-template-columns:1fr 1fr}}
-    .kpi{
-      border:1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.05);
-      border-radius: var(--r2);
-      padding: 14px;
-    }
-    .kpi small{display:block; color:var(--mut2); margin-top:6px; line-height:1.45}
-    .small{color:var(--mut2); font-size:12px; line-height:1.45}
 
     /* SECTIONS */
     section.block{padding:34px 0}
     .sectionHead{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom:16px}
     .sectionHead h2{margin:0; font-size: clamp(20px, 2.2vw, 28px); letter-spacing:-0.3px}
-    .sectionHead p{margin:0; color:var(--mut); font-size:14px; line-height:1.5; max-width: 78ch}
+    .sectionHead p{margin:0; color:var(--mut); font-size:14px; line-height:1.5; max-width: 82ch}
     .cards3{display:grid; gap:12px}
     @media(min-width:980px){.cards3{grid-template-columns:repeat(3,1fr)}}
+    .cards4{display:grid; gap:12px}
+    @media(min-width:980px){.cards4{grid-template-columns:repeat(4,1fr)}}
     .card{
       border:1px solid rgba(255,255,255,.12);
       background: rgba(255,255,255,.06);
@@ -180,6 +167,7 @@
     }
     .card b{display:block; margin-bottom:6px}
     .card p{margin:0; color:var(--mut); font-size:14px; line-height:1.55}
+    .small{color:var(--mut2); font-size:12px; line-height:1.45}
 
     /* PROCESS */
     .steps{display:grid; gap:12px}
@@ -268,6 +256,7 @@
       </a>
 
       <nav class="menu" aria-label="Navigace">
+        <a href="#rychle">Rychle</a>
         <a href="#sluzby">Služby</a>
         <a href="#proces">Postup</a>
         <a href="#videa">Videa</a>
@@ -284,68 +273,88 @@
 
   <div class="wrap" id="top">
 
-    <!-- HERO -->
+    <!-- HERO FULL WIDTH -->
     <div class="hero">
-      <div class="heroGrid">
-
-        <div class="heroCard">
-          <div class="heroMedia">
-            <!-- TODO: nahraď reálnou fotkou -->
-<img src="hero.JPG" alt="Portrét / hero fotografie" loading="lazy">          </div>
-
-          <div class="heroOverlay">
-            <div class="kicker">
-              <span class="dot"></span><span>Praha a Středočeský kraj</span>
-              <span class="dot"></span><span>Prodej nemovitostí</span>
-              <span class="dot"></span><span>Minimalizace rizik</span>
-            </div>
-
-            <h1>Prodej za co nejvyšší cenu.<br><span style="color:rgba(245,247,255,.78)">V co možná nejkratším čase.</span></h1>
-
-            <p class="sub">
-              Jsem certifikovaný realitní makléř. Specializuji se na zprostředkování prodeje nemovitostí s důrazem na cenu, rychlost a minimalizaci rizik.
-            </p>
-
-            <div class="heroActions">
-              <a class="btn" href="#proces">Postup prodeje</a>
-              <a class="ghost" href="#videa">Videa</a>
-              <a class="ghost" href="#reference">Reference</a>
-            </div>
-          </div>
+      <div class="heroCard">
+        <div class="heroMedia">
+          <img src="hero.JPG" alt="RNDr. Jiří Zimmer — hero fotografie" loading="lazy">
         </div>
 
-        <aside class="panel">
-          <b>Rychlé informace</b>
-          <p>Konkrétní rámec toho, co dělám a jak. Bez frází.</p>
-          <div class="line"></div>
-
-          <div class="kpis">
-            <div class="kpi">
-              <b>Působnost</b>
-              <small>Praha a Středočeský kraj</small>
-            </div>
-            <div class="kpi">
-              <b>Specializace</b>
-              <small>Prodej nemovitostí: co nejvyšší cena, co nejkratší čas, minimalizace rizik</small>
-            </div>
-            <div class="kpi">
-              <b>Marketing</b>
-              <small>Foto/video, úklid či homestaging, inzerce + sociální sítě</small>
-            </div>
-            <div class="kpi">
-              <b>Právní bezpečí</b>
-              <small>Advokát, úschova, katastr, předání a přepisy energií</small>
-            </div>
+        <div class="heroOverlay">
+          <div class="kicker">
+            <span class="dot"></span><span>Praha a Středočeský kraj</span>
+            <span class="dot"></span><span>Prodej nemovitostí</span>
+            <span class="dot"></span><span>Minimalizace rizik</span>
           </div>
 
-          <div class="line"></div>
-          <div class="small">
-            Pozn.: V rámci provize zajišťuji a hradím přípravu, foto/video, prezentaci, advokáta i prohlídky — klient nic neplatí předem.
-          </div>
-        </aside>
+          <h1>Prodej za co nejvyšší cenu.<br><span style="color:rgba(245,247,255,.78)">V co možná nejkratším čase.</span></h1>
 
+          <p class="sub">
+            Jsem certifikovaný realitní makléř. Specializuji se na zprostředkování prodeje nemovitostí s důrazem na cenu, rychlost a minimalizaci rizik.
+          </p>
+
+          <div class="heroActions">
+            <a class="btn" href="#kontakt">Kontakt</a>
+            <a class="ghost" href="#proces">Postup prodeje</a>
+            <a class="ghost" href="#reference">Reference</a>
+          </div>
+
+          <div class="heroNote">
+            Pokud fotka „řeže“ obličej: v CSS změň <b>object-position</b> u <code>.heroMedia img</code> (např. <code>center 10%</code> / <code>center 30%</code>).
+          </div>
+        </div>
       </div>
     </div>
+
+    <!-- RYCHLE + CO ZAJISTUJI POD HERO -->
+    <section class="block" id="rychle">
+      <div class="sectionHead">
+        <div>
+          <h2>Rychlé informace</h2>
+          <p>Krátce a konkrétně. Tohle má vytvořit důvěru bez omáčky.</p>
+        </div>
+      </div>
+
+      <div class="cards4">
+        <div class="card">
+          <b>Působnost</b>
+          <p>Praha a Středočeský kraj</p>
+        </div>
+        <div class="card">
+          <b>Specializace</b>
+          <p>Co nejvyšší cena • co nejkratší čas • minimalizace rizik</p>
+        </div>
+        <div class="card">
+          <b>Marketing</b>
+          <p>Foto/video, úklid či homestaging, inzerce + sociální sítě</p>
+        </div>
+        <div class="card">
+          <b>Právní bezpečí</b>
+          <p>Advokát, úschova, katastr, předání, přepisy energií</p>
+        </div>
+      </div>
+
+      <div style="height:12px"></div>
+
+      <div class="cards3">
+        <div class="card">
+          <b>Bez platby předem</b>
+          <p>Klient nic neplatí předem. Vše řeším v rámci provize.</p>
+        </div>
+        <div class="card">
+          <b>Minimální časová zátěž</b>
+          <p>Na prohlídky chodím vždy pouze já; prodávající není zatěžován.</p>
+        </div>
+        <div class="card">
+          <b>Kontrola rizik</b>
+          <p>Proces a dokumenty jsou vedené tak, aby se minimalizovala rizika pro prodávajícího.</p>
+        </div>
+      </div>
+
+      <p class="small" style="margin-top:12px">
+        Pozn.: V rámci provize zajišťuji a hradím přípravu, foto/video, prezentaci, advokáta i prohlídky — klient nic neplatí předem.
+      </p>
+    </section>
 
     <!-- SLUZBY -->
     <section class="block" id="sluzby">
@@ -451,7 +460,6 @@
       </div>
 
       <div class="videoGrid">
-        <!-- VARIANTA 1: lokální video (assets/video/video-1.mp4) -->
         <div class="card">
           <b>Video #1</b>
           <p class="small">Pokud hostuješ lokálně: <code>assets/video/video-1.mp4</code></p>
@@ -460,7 +468,6 @@
           </video>
         </div>
 
-        <!-- VARIANTA 2: embed (doporučeno) -->
         <div class="card">
           <b>Video #2 (embed)</b>
           <p class="small">Vlož sem iframe z YouTube/Vimeo (unlisted).</p>
@@ -476,7 +483,7 @@
       <div class="sectionHead">
         <div>
           <h2>Reference</h2>
-          <p>Externí zdroje nejsou; u každé reference doporučuji doplnit 1 větu (typ nemovitosti / co bylo klíčové).</p>
+          <p>Externí zdroje nejsou; u každé reference doporučuji doplnit 1 větu (typ nemovitosti / co bylo klíčové). Teď to vypadá jako seznam jmen.</p>
         </div>
       </div>
 
