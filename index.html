@@ -22,19 +22,31 @@
 
   <style>
     :root{
-      --bg:#ffffff;
-      --bg2:#f6f7fb;
-      --surface:#ffffff;
+      /* Jakub-smekal-like “živější” světlo + tmavě modrá */
       --ink:#0b1220;
-      --mut:#4b5565;
-      --mut2:#6b7280;
-      --line:rgba(15,23,42,.12);
-      --shadow:0 22px 55px rgba(2,6,23,.10);
-      --shadow2:0 12px 26px rgba(2,6,23,.07);
-      --r:22px;
-      --r2:16px;
-      --w:1100px;
-      --accent:#0b1220;
+      --mut:rgba(11,18,32,.72);
+      --mut2:rgba(11,18,32,.58);
+
+      --accent:#121a45;
+      --accent2:#26307a;
+
+      --bg1:#ffffff;
+      --bg2:#eef0fb;
+
+      --line:rgba(15,23,42,.10);
+      --line2:rgba(255,255,255,.18);
+
+      --card:rgba(255,255,255,.92);
+      --card2:rgba(255,255,255,.86);
+
+      --shadow:0 30px 80px rgba(2,6,23,.14);
+      --shadow2:0 16px 34px rgba(2,6,23,.10);
+
+      --r:26px;
+      --r2:20px;
+      --w:1120px;
+
+      --pad:28px;
     }
 
     *{box-sizing:border-box}
@@ -43,223 +55,339 @@
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--ink);
-      background: linear-gradient(180deg, var(--bg), var(--bg2));
+      background:
+        radial-gradient(1000px 650px at 18% 12%, rgba(38, 60, 120, .12), transparent 62%),
+        radial-gradient(1000px 650px at 82% 24%, rgba(90, 60, 160, .10), transparent 62%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
     }
-    a{color:inherit}
-    .wrap{max-width:var(--w); margin:0 auto; padding:28px 18px}
+    /* jemná textura/noise */
+    body:before{
+      content:"";
+      position:fixed; inset:0;
+      pointer-events:none;
+      background:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+      opacity:.18;
+      mix-blend-mode:multiply;
+    }
 
-    /* Full-bleed helper (break out of wrapper) */
+    a{color:inherit}
+    .wrap{max-width:var(--w); margin:0 auto; padding:26px 18px}
+
+    /* breakout */
     .fullbleed{
       width:100vw;
       margin-left:calc(50% - 50vw);
       margin-right:calc(50% - 50vw);
     }
 
-    /* NAV */
+    /* NAV (pill bar) */
     .nav{
-      position:sticky; top:0; z-index:50;
-      background: rgba(255,255,255,.88);
+      position:sticky; top:0; z-index:60;
+      padding: 14px 0;
+      background: linear-gradient(180deg, rgba(255,255,255,.70), rgba(255,255,255,.45));
       backdrop-filter: blur(10px);
-      border-bottom:1px solid var(--line);
+      border-bottom:1px solid rgba(15,23,42,.06);
     }
-    .nav .inner{
+    .navShell{max-width:var(--w); margin:0 auto; padding:0 18px}
+    .navPill{
       display:flex; align-items:center; justify-content:space-between; gap:14px;
-      max-width:var(--w); margin:0 auto; padding:12px 18px;
+      padding: 12px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.88);
+      border:1px solid rgba(15,23,42,.08);
+      box-shadow: 0 14px 34px rgba(2,6,23,.08);
     }
-    .brand{display:flex; align-items:center; gap:10px; text-decoration:none; min-width:260px}
-    .logo{
+
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none;
+      min-width: 220px;
+    }
+    .brandMark{
       width:38px; height:38px; border-radius:14px;
-      background: linear-gradient(135deg, rgba(11,18,32,.10), rgba(11,18,32,.02));
-      border:1px solid var(--line);
-      box-shadow: var(--shadow2);
+      background: linear-gradient(135deg, rgba(18,26,69,.14), rgba(18,26,69,.04));
+      border:1px solid rgba(18,26,69,.12);
+      display:flex; align-items:center; justify-content:center;
     }
+    .brandMark svg{width:20px; height:20px; fill: var(--accent)}
     .brand b{display:block; font-size:14px; letter-spacing:.2px}
     .brand span{display:block; font-size:12px; color:var(--mut2)}
 
-    .menu{display:none; gap:16px; align-items:center}
-    .menu a{color:var(--mut); text-decoration:none; font-size:13px}
-    .menu a:hover{color:var(--ink)}
+    .menu{display:none; gap:18px; align-items:center}
+    .menu a{color:rgba(11,18,32,.74); text-decoration:none; font-size:13px; font-weight:650}
+    .menu a:hover{color:var(--accent)}
     @media(min-width:980px){.menu{display:flex}}
 
+    .navRight{display:flex; gap:10px; align-items:center}
     .pill{
-      border:1px solid var(--line);
+      border:1px solid rgba(18,26,69,.12);
       background: rgba(255,255,255,.92);
-      color:var(--mut);
-      padding:10px 12px;
+      color: rgba(18,26,69,.86);
+      padding:10px 14px;
       border-radius:999px;
       font-size:13px;
       text-decoration:none;
       white-space:nowrap;
+      font-weight:650;
     }
     .btn{
-      border:1px solid rgba(11,18,32,.18);
+      border:1px solid rgba(18,26,69,.18);
       background: var(--accent);
       color:#fff;
-      padding:10px 12px;
+      padding:10px 14px;
       border-radius:999px;
       font-size:13px;
       font-weight:800;
       text-decoration:none;
       white-space:nowrap;
-      box-shadow: var(--shadow2);
+      box-shadow: 0 12px 26px rgba(18,26,69,.18);
     }
-    .btn:hover{opacity:.92}
+    .btn:hover{background:var(--accent2)}
 
-    /* HERO (full width) */
+    /* HERO (full width card) */
     .hero{padding:18px 0 10px}
     .heroCard{
-      border:1px solid rgba(255,255,255,.16);
-      border-radius: 28px;
+      max-width: var(--w);
+      margin: 0 auto;
+      border-radius: 34px;
       overflow:hidden;
       box-shadow: var(--shadow);
       position:relative;
-      min-height: clamp(540px, 66vh, 780px);
+      min-height: clamp(560px, 68vh, 860px);
       background:#0b1220;
     }
     .heroMedia{
       position:absolute; inset:0;
       background:
-        linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 42%, rgba(0,0,0,.45) 100%),
-        linear-gradient(180deg, rgba(0,0,0,.10) 35%, rgba(0,0,0,.65) 100%);
+        radial-gradient(900px 600px at 55% 40%, rgba(255,255,255,.10), transparent 60%),
+        linear-gradient(90deg, rgba(0,0,0,.66) 0%, rgba(0,0,0,.28) 46%, rgba(0,0,0,.55) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.10) 35%, rgba(0,0,0,.74) 100%);
     }
     .heroMedia img{
       position:absolute; inset:0;
       width:100%; height:100%;
       object-fit:cover;
       object-position:center 20%;
-      /* žádné filtry/opacity/scale => ostrost */
+      /* žádné opacity/filter => ostrost */
     }
     .heroOverlay{
       position:absolute; inset:0;
-      padding: 34px 26px;
+      padding: 42px 34px;
       display:flex; flex-direction:column; justify-content:flex-end;
-      gap:16px;
+      gap:18px;
       color:#fff;
     }
-    .kicker{
-      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
-      font-size:13px; opacity:.92;
+    .heroKicker{
+      display:flex; gap:12px; flex-wrap:wrap; align-items:center;
+      font-size:13px;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      opacity:.86;
     }
     .dot{width:6px; height:6px; border-radius:99px; background: rgba(255,255,255,.92); display:inline-block}
-
     h1{
       margin:0;
-      font-size: clamp(40px, 4.5vw, 70px);
-      line-height:1.01;
-      letter-spacing:-1px;
+      font-size: clamp(42px, 4.6vw, 74px);
+      line-height:1.02;
+      letter-spacing:-1.1px;
+      max-width: 16ch;
     }
-    .sub{
+    .heroSub{
       margin:0;
       font-size: clamp(15px, 1.35vw, 19px);
-      line-height:1.65;
+      line-height:1.7;
       opacity:.92;
-      max-width: 78ch;
+      max-width: 76ch;
     }
-    .heroActions{display:flex; gap:10px; flex-wrap:wrap}
+    .heroActions{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
     .ghost{
       border:1px solid rgba(255,255,255,.30);
       background: rgba(255,255,255,.10);
       color:#fff;
-      padding:10px 12px;
+      padding:10px 14px;
       border-radius:999px;
       font-size:13px;
-      font-weight:650;
+      font-weight:750;
       text-decoration:none;
       white-space:nowrap;
       backdrop-filter: blur(8px);
     }
     .ghost:hover{background: rgba(255,255,255,.16)}
+
+    /* “floating” chips/cards inside hero */
     .heroMeta{
-      display:grid; gap:10px;
-      margin-top: 6px;
-      max-width: 920px;
+      display:grid; gap:12px;
+      max-width: 980px;
+      margin-top: 4px;
     }
     @media(min-width:980px){.heroMeta{grid-template-columns:repeat(3,1fr)}}
     .metaCard{
       border:1px solid rgba(255,255,255,.18);
       background: rgba(255,255,255,.08);
-      border-radius: 16px;
+      border-radius: 18px;
       padding: 14px 14px;
       backdrop-filter: blur(10px);
+      display:flex; gap:12px; align-items:flex-start;
     }
-    .metaCard b{display:block; font-size:13px; letter-spacing:.1px}
-    .metaCard small{display:block; margin-top:6px; opacity:.82; line-height:1.5}
+    .metaIcon{
+      width:38px; height:38px; border-radius:14px;
+      background: rgba(255,255,255,.14);
+      border:1px solid rgba(255,255,255,.16);
+      display:flex; align-items:center; justify-content:center;
+      flex:0 0 auto;
+    }
+    .metaIcon svg{width:20px; height:20px; fill:#fff}
+    .metaCard b{display:block; font-size:13px; letter-spacing:.2px}
+    .metaCard small{display:block; margin-top:5px; opacity:.82; line-height:1.55}
 
-    /* SECTIONS */
-    section.block{padding:52px 0}
-    .sectionHead{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom:18px}
-    .sectionHead h2{margin:0; font-size: clamp(22px, 2.2vw, 30px); letter-spacing:-.35px}
-    .sectionHead p{margin:0; color:var(--mut); font-size:14px; line-height:1.75; max-width: 92ch}
+    /* SECTION HEADINGS */
+    section.block{padding:64px 0}
+    .label{
+      font-size:13px;
+      letter-spacing:.6px;
+      text-transform:uppercase;
+      color: rgba(18,26,69,.75);
+      font-weight:900;
+      margin-bottom: 8px;
+    }
+    .h2{
+      margin:0 0 10px 0;
+      font-size: clamp(30px, 3.2vw, 46px);
+      letter-spacing:-.8px;
+      line-height:1.05;
+    }
+    .lead{
+      margin:0;
+      color: var(--mut);
+      font-size: 15px;
+      line-height:1.85;
+      max-width: 92ch;
+    }
 
-    .cards3{display:grid; gap:14px}
-    @media(min-width:980px){.cards3{grid-template-columns:repeat(3,1fr)}}
-    .cards4{display:grid; gap:14px}
-    @media(min-width:980px){.cards4{grid-template-columns:repeat(4,1fr)}}
+    /* CARDS */
+    .grid3{display:grid; gap:18px; margin-top: 24px}
+    @media(min-width:980px){.grid3{grid-template-columns:repeat(3,1fr)}}
+    .grid4{display:grid; gap:18px; margin-top: 24px}
+    @media(min-width:980px){.grid4{grid-template-columns:repeat(4,1fr)}}
 
     .card{
-      border:1px solid var(--line);
-      background: var(--surface);
-      border-radius: var(--r2);
-      padding: 18px;
-      box-shadow: var(--shadow2);
+      border:1px solid rgba(15,23,42,.10);
+      background: var(--card);
+      border-radius: 26px;
+      padding: 26px;
+      box-shadow: 0 16px 34px rgba(2,6,23,.08);
     }
-    .card b{display:block; margin-bottom:6px; letter-spacing:.1px}
-    .card p{margin:0; color:var(--mut); font-size:14px; line-height:1.7}
-    .small{color:var(--mut2); font-size:12px; line-height:1.55}
+    .cardHead{display:flex; align-items:center; gap:14px; margin-bottom: 12px}
+    .iBox{
+      width:54px; height:54px; border-radius:18px;
+      background: var(--accent);
+      display:flex; align-items:center; justify-content:center;
+      box-shadow: 0 14px 26px rgba(18,26,69,.22);
+      flex:0 0 auto;
+    }
+    .iBox svg{width:26px; height:26px; fill:#fff}
+    .cardTitle{
+      margin:0;
+      font-size: 22px;
+      letter-spacing:-.3px;
+      line-height:1.15;
+    }
+    .cardText{
+      margin:0;
+      color: var(--mut);
+      font-size: 15px;
+      line-height:1.85;
+    }
+    .note{margin-top:14px; color:var(--mut2); font-size:13px; line-height:1.7}
 
-    /* PROCESS */
-    .steps{display:grid; gap:14px}
-    @media(min-width:980px){.steps{grid-template-columns:1fr 1fr}}
-    .step{
-      display:flex; gap:12px;
-      border:1px solid var(--line);
-      background: var(--surface);
-      border-radius: var(--r2);
-      padding: 16px;
-      box-shadow: var(--shadow2);
+    /* PROCESS (styl jako u něj – karty + číslo v tmavém boxu) */
+    .flow{
+      margin-top: 26px;
+      display:grid;
+      gap:18px;
     }
-    .num{
-      width:38px; height:38px; border-radius:14px;
+    @media(min-width:980px){.flow{grid-template-columns:1fr 1fr}}
+    .step{
+      border:1px solid rgba(15,23,42,.10);
+      background: var(--card);
+      border-radius: 26px;
+      padding: 24px;
+      box-shadow: 0 16px 34px rgba(2,6,23,.08);
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+    }
+    .stepNum{
+      width:52px; height:52px;
+      border-radius:18px;
       background: var(--accent);
       color:#fff;
       display:flex; align-items:center; justify-content:center;
-      font-weight: 900;
+      font-weight:900;
+      font-size:18px;
       flex:0 0 auto;
+      box-shadow: 0 14px 26px rgba(18,26,69,.22);
     }
-    .step b{display:block; margin-bottom:4px}
-    .step p{margin:0; color:var(--mut); font-size:14px; line-height:1.7}
-    ul{margin:10px 0 0 18px; color:var(--mut); line-height:1.8}
+    .step b{display:block; font-size:18px; letter-spacing:-.2px; margin-bottom: 8px}
+    .step p{margin:0; color:var(--mut); font-size:15px; line-height:1.85}
+    .step ul{margin:12px 0 0 18px; color:var(--mut); line-height:1.9}
 
     /* VIDEO */
-    .videoGrid{display:grid; gap:14px}
+    .videoGrid{display:grid; gap:18px; margin-top:24px}
     @media(min-width:980px){.videoGrid{grid-template-columns:1fr 1fr}}
-    video{width:100%; border-radius:14px; border:1px solid var(--line); background:#000}
+    video{
+      width:100%;
+      border-radius: 18px;
+      border:1px solid rgba(15,23,42,.10);
+      background:#000;
+      margin-top: 14px;
+    }
+    .placeholder{
+      margin-top:14px;
+      aspect-ratio:16/9;
+      border-radius: 18px;
+      border:1px solid rgba(15,23,42,.10);
+      background: rgba(18,26,69,.06);
+      display:flex; align-items:center; justify-content:center;
+      color: rgba(18,26,69,.70);
+      font-weight:900;
+      letter-spacing:.4px;
+      text-transform:uppercase;
+    }
 
     /* QUOTES */
-    .strip{display:grid; gap:14px}
+    .strip{display:grid; gap:18px; margin-top:24px}
     @media(min-width:980px){.strip{grid-template-columns:1fr 1fr 1fr}}
     .quote{
-      border:1px solid var(--line);
-      background: var(--surface);
-      border-radius: var(--r2);
-      padding: 16px;
+      border:1px solid rgba(15,23,42,.10);
+      background: var(--card);
+      border-radius: 26px;
+      padding: 22px;
+      box-shadow: 0 16px 34px rgba(2,6,23,.08);
       position:relative;
       overflow:hidden;
-      box-shadow: var(--shadow2);
     }
     .quote:before{
       content:"“";
       position:absolute;
-      top:-18px; left:10px;
-      font-size: 84px;
-      color: rgba(11,18,32,.08);
+      top:-18px; left:12px;
+      font-size: 90px;
+      color: rgba(18,26,69,.10);
       font-weight: 900;
     }
-    .quote p{margin:0; color:var(--mut); font-size:14px; line-height:1.7}
-    .quote b{display:block; margin-top:10px; font-size:13px; color:var(--ink)}
+    .quote p{margin:0; color:var(--mut); font-size:15px; line-height:1.85}
+    .quote b{display:block; margin-top:12px; font-size:14px; color:var(--ink)}
+
+    /* CONTACT */
+    .contactGrid{display:grid; gap:18px; margin-top:24px}
+    @media(min-width:980px){.contactGrid{grid-template-columns:repeat(3,1fr)}}
+    .contactCard .cardHead{margin-bottom: 10px}
+    .contactCard a{color: var(--accent); text-decoration:none; font-weight:900}
+    .contactCard a:hover{text-decoration:underline}
 
     /* FOOTER */
-    footer{padding:26px 0 46px; color:var(--mut2); font-size:12px}
+    footer{padding:40px 0 54px; color:var(--mut2); font-size:13px}
     .footGrid{display:grid; gap:10px}
     @media(min-width:980px){.footGrid{grid-template-columns:1fr 1fr; align-items:center}}
     .right{text-align:left}
@@ -267,9 +395,9 @@
 
     /* MOBILE STICKY */
     .mobileSticky{
-      position:fixed; left:0; right:0; bottom:0; z-index:60;
+      position:fixed; left:0; right:0; bottom:0; z-index:70;
       background: rgba(255,255,255,.94);
-      border-top: 1px solid var(--line);
+      border-top: 1px solid rgba(15,23,42,.08);
       backdrop-filter: blur(10px);
       padding: 10px 12px;
     }
@@ -280,246 +408,347 @@
     }
     .mobileSticky a{flex:1; text-align:center}
     @media(min-width:980px){.mobileSticky{display:none}}
-    .spacer{height:64px}
+    .spacer{height:70px}
+
+    /* small helpers */
+    .divider{height:1px; background: rgba(15,23,42,.08); margin: 44px 0}
   </style>
 </head>
 
 <body>
+  <!-- NAV -->
   <div class="nav">
-    <div class="inner">
-      <a class="brand" href="#top">
-        <div class="logo" aria-hidden="true"></div>
-        <div>
-          <b>RNDr. Jiří Zimmer</b>
-          <span>Certifikovaný realitní makléř</span>
+    <div class="navShell">
+      <div class="navPill">
+        <a class="brand" href="#top">
+          <div class="brandMark" aria-hidden="true">
+            <!-- simple “bank/house” mark -->
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 3l10 6v2H2V9l10-6zm-7 9h14v8H5v-8zm-2 9h18v2H3v-2z"/>
+            </svg>
+          </div>
+          <div>
+            <b>RNDr. Jiří Zimmer</b>
+            <span>Certifikovaný realitní makléř</span>
+          </div>
+        </a>
+
+        <nav class="menu" aria-label="Navigace">
+          <a href="#rychle">Rychle</a>
+          <a href="#sluzby">Služby</a>
+          <a href="#proces">Spolupráce</a>
+          <a href="#videa">Videa</a>
+          <a href="#reference">Reference</a>
+        </nav>
+
+        <div class="navRight">
+          <a class="pill" href="#kontakt">Praha + Středočeský kraj</a>
+          <a class="btn" href="#kontakt">Kontakt</a>
         </div>
-      </a>
-
-      <nav class="menu" aria-label="Navigace">
-        <a href="#rychle">Rychle</a>
-        <a href="#sluzby">Služby</a>
-        <a href="#proces">Postup</a>
-        <a href="#videa">Videa</a>
-        <a href="#reference">Reference</a>
-        <a href="#kontakt">Kontakt</a>
-      </nav>
-
-      <div style="display:flex;gap:10px;align-items:center">
-        <a class="pill" href="#kontakt">Praha + Středočeský kraj</a>
-        <a class="btn" href="#kontakt">Kontakt</a>
       </div>
     </div>
   </div>
 
   <div id="top"></div>
 
-  <!-- HERO FULL-WIDTH -->
-  <div class="hero fullbleed">
+  <!-- HERO FULL WIDTH -->
+  <div class="hero fullbleed" aria-label="Hero">
     <div class="heroCard">
       <div class="heroMedia">
-        <!-- HERO FOTO: doporučeno ostrý portrét tebe, 2400–3200px+ šířka -->
+        <!-- DŮLEŽITÉ: nahraj ostrý portrét (2400px+). Pokud řeže hlavu, uprav object-position. -->
         <img src="hero.JPG" alt="RNDr. Jiří Zimmer — realitní makléř" loading="lazy">
       </div>
 
       <div class="heroOverlay">
-        <div class="kicker">
-          <span class="dot"></span><span>Praha a Středočeský kraj</span>
-          <span class="dot"></span><span>Prodej nemovitostí</span>
-          <span class="dot"></span><span>Minimalizace rizik</span>
+        <div class="heroKicker">
+          <span>Pro jednotlivce a rodiny</span><span class="dot"></span><span>Praha a Středočeský kraj</span>
         </div>
 
-        <h1>Prodej za co nejvyšší cenu.<br><span style="opacity:.92">V co možná nejkratším čase.</span></h1>
+        <h1>Realitní makléř<br>zaměřený na<br>bezpečný prodej</h1>
 
-        <p class="sub">
-          Jsem certifikovaný realitní makléř. Specializuji se na zprostředkování prodeje nemovitostí s důrazem na cenu, rychlost a minimalizaci rizik.
+        <p class="heroSub">
+          Zprostředkování prodeje nemovitostí s důrazem na cenu, rychlost a minimalizaci rizik.
+          Žádná platba předem — přípravu, marketing i právní servis řeším v rámci provize.
         </p>
 
         <div class="heroActions">
-          <a class="btn" href="#kontakt">Kontakt</a>
-          <a class="ghost" href="#proces">Postup prodeje</a>
+          <a class="btn" href="#kontakt">Nezávazná konzultace</a>
+          <a class="ghost" href="#proces">Jak vypadá spolupráce?</a>
           <a class="ghost" href="#reference">Reference</a>
         </div>
 
         <div class="heroMeta">
           <div class="metaCard">
-            <b>Působnost</b>
-            <small>Praha a Středočeský kraj</small>
+            <div class="metaIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l9 7-1.2 1.6L12 4.8 4.2 10.6 3 9l9-7zm-7 10h14v10H5V12zm3 3v5h2v-5H8zm4 0v5h2v-5h-2z"/></svg>
+            </div>
+            <div>
+              <b>Působnost</b>
+              <small>Praha a Středočeský kraj</small>
+            </div>
           </div>
           <div class="metaCard">
-            <b>Strategie prodeje</b>
-            <small>Co nejvyšší cena • co nejkratší čas • minimalizace rizik</small>
+            <div class="metaIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 19h16v2H4v-2zm2-2V3h12v14H6zm2-2h8V5H8v10z"/></svg>
+            </div>
+            <div>
+              <b>Strategie prodeje</b>
+              <small>Co nejvyšší cena • co nejkratší čas • kontrola rizik</small>
+            </div>
           </div>
           <div class="metaCard">
-            <b>Právní bezpečí</b>
-            <small>Advokát • úschova • katastr • předání • přepisy energií</small>
+            <div class="metaIcon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4zm0 3.2L6 8v4c0 3.9 2.3 7.3 6 8 3.7-.7 6-4.1 6-8V8l-6-2.8z"/></svg>
+            </div>
+            <div>
+              <b>Právní bezpečí</b>
+              <small>Advokát • úschova • katastr • předání • přepisy</small>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- REST OF PAGE IN WRAP -->
+  <!-- CONTENT -->
   <div class="wrap">
 
     <!-- RYCHLE -->
     <section class="block" id="rychle">
-      <div class="sectionHead">
-        <div>
-          <h2>Rychlé informace</h2>
-          <p>Krátce a konkrétně. Bez efektů, bez slibotechniky. Jen rámec práce a kontrola rizik.</p>
+      <div class="label">Rychlé informace</div>
+      <h2 class="h2">Jasně a bez omáčky</h2>
+      <p class="lead">
+        Krátké shrnutí toho, jak pracuji a co hlídám. Cíl je důvěra: transparentní proces, kontrola rizik a minimální časová zátěž prodávajícího.
+      </p>
+
+      <div class="grid4">
+        <div class="card">
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l9 7-1.2 1.6L12 4.8 4.2 10.6 3 9l9-7zm-7 10h14v10H5V12z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Působnost</h3></div>
+          </div>
+          <p class="cardText">Praha a Středočeský kraj.</p>
+        </div>
+
+        <div class="card">
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 20h16v2H4v-2zm2-2V4h12v14H6zm2-2h8V6H8v10z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Specializace</h3></div>
+          </div>
+          <p class="cardText">Prodej: cena, rychlost, minimalizace rizik.</p>
+        </div>
+
+        <div class="card">
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M21 6h-6l-2-2H3v16h18V6zM5 18V6h7.2l2 2H19v10H5z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Marketing</h3></div>
+          </div>
+          <p class="cardText">Foto/video, úklid či homestaging, inzerce + sociální sítě.</p>
+        </div>
+
+        <div class="card">
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Právní servis</h3></div>
+          </div>
+          <p class="cardText">Advokát, úschova, katastr, předání, přepisy energií.</p>
         </div>
       </div>
 
-      <div class="cards4">
-        <div class="card"><b>Působnost</b><p>Praha a Středočeský kraj</p></div>
-        <div class="card"><b>Specializace</b><p>Co nejvyšší cena • co nejkratší čas • minimalizace rizik</p></div>
-        <div class="card"><b>Marketing</b><p>Foto/video, úklid či homestaging, inzerce + sociální sítě</p></div>
-        <div class="card"><b>Právní bezpečí</b><p>Advokát, úschova, katastr, předání, přepisy energií</p></div>
+      <div class="grid3">
+        <div class="card">
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 1a7 7 0 0 1 7 7c0 2.6-1.4 4.8-3.5 6v2h-7v-2C6.4 12.8 5 10.6 5 8a7 7 0 0 1 7-7zm-3 20h6v2H9v-2z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Bez platby předem</h3></div>
+          </div>
+          <p class="cardText">Klient nic neplatí předem. Náklady řeším v rámci provize.</p>
+        </div>
+
+        <div class="card">
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M7 2h10v2H7V2zM6 6h12v14H6V6zm2 2v10h8V8H8z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Minimální zátěž</h3></div>
+          </div>
+          <p class="cardText">Na prohlídky chodím vždy pouze já; prodávající není zatěžován.</p>
+        </div>
+
+        <div class="card">
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M3 13h2v8H3v-8zm4-6h2v14H7V7zm4 4h2v10h-2V11zm4-8h2v18h-2V3zm4 10h2v8h-2v-8z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Kontrola rizik</h3></div>
+          </div>
+          <p class="cardText">Prověřování zájemců, depozitum, smlouvy, úschova a proces katastru.</p>
+        </div>
       </div>
 
-      <div style="height:14px"></div>
-
-      <div class="cards3">
-        <div class="card"><b>Bez platby předem</b><p>Klient nic neplatí předem. Vše řeším v rámci provize.</p></div>
-        <div class="card"><b>Minimální časová zátěž</b><p>Na prohlídky chodím vždy pouze já; prodávající není zatěžován.</p></div>
-        <div class="card"><b>Kontrola rizik</b><p>Proces a dokumenty jsou vedené tak, aby se minimalizovala rizika pro prodávajícího.</p></div>
-      </div>
-
-      <p class="small" style="margin-top:14px">
+      <p class="note">
         Pozn.: V rámci provize zajišťuji a hradím přípravu, foto/video, prezentaci, advokáta i prohlídky — klient nic neplatí předem.
       </p>
     </section>
 
     <!-- SLUZBY -->
     <section class="block" id="sluzby">
-      <div class="sectionHead">
-        <div>
-          <h2>Co pro klienta zajišťuji</h2>
-          <p>V rámci dohodnuté provize zajišťuji a hradím přípravu, marketing, právní servis a celý průběh prodeje. Klient nic neplatí předem a je minimálně časově zatěžován.</p>
-        </div>
-      </div>
+      <div class="label">Služby</div>
+      <h2 class="h2">S čím vám mohu pomoct</h2>
+      <p class="lead">
+        V rámci dohodnuté provize zajišťuji přípravu, marketing, právní servis a celý průběh prodeje. Prodávající má minimum starostí a maximum kontroly.
+      </p>
 
-      <div class="cards3">
+      <div class="grid3">
         <div class="card">
-          <b>Příprava a prezentace</b>
-          <p>Úklid či homestaging, fotografie a video prohlídka, kvalitní prezentace nabídky.</p>
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 2h14l2 2v18H4V2zm2 2v16h12V5.8L16.2 4H6zm2 3h8v2H8V7zm0 4h8v2H8v-2z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Příprava a prezentace</h3></div>
+          </div>
+          <p class="cardText">Úklid či homestaging, fotografie a video prohlídka, kvalitní prezentace nabídky.</p>
         </div>
+
         <div class="card">
-          <b>Prohlídky a prověření zájemce</b>
-          <p>Na prohlídky chodím vždy pouze já; šetřím čas prodávajícího a trvám na ceně dohodnuté s majitelem. Vážného zájemce prověřím a informace předám prodávajícímu.</p>
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 1-5 14l-3 3v-3l2-2a7.9 7.9 0 0 1-2-5 8 8 0 0 1 8-8zm0 2a6 6 0 1 0 0 12 6 6 0 0 0 0-12z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Prohlídky a prověření</h3></div>
+          </div>
+          <p class="cardText">Prohlídky řeším já. Vážné zájemce prověřím a informace předám prodávajícímu.</p>
         </div>
+
         <div class="card">
-          <b>Vyjednávání a právní průběh</b>
-          <p>Blokovací depozitum, kupní smlouva od advokáta, advokátní úschova, katastr, předání a přepisy energií a vody dle dohody stran.</p>
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6l8-4zm3 7H9v2h6V9zm0 4H9v2h6v-2z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Vyjednávání a právo</h3></div>
+          </div>
+          <p class="cardText">Depozitum, smlouvy od advokáta, úschova, katastr, předání a přepisy energií.</p>
         </div>
       </div>
     </section>
 
-    <!-- PROCES -->
+    <!-- PROCES / SPOLUPRÁCE -->
     <section class="block" id="proces">
-      <div class="sectionHead">
-        <div>
-          <h2>Zprostředkování prodeje — postup</h2>
-          <p>Pořadí kroků a kontrola rizik. Makléř jedná vždy v zájmu klienta/prodávajícího.</p>
-        </div>
-        <a class="pill" href="#kontakt">Kontakt</a>
-      </div>
+      <div class="label">Spolupráce</div>
+      <h2 class="h2">Jak vypadá spolupráce?</h2>
+      <p class="lead">
+        Přehled kroků od startu po předání. Cíl: jasná pravidla, kontrola rizik, minimum slepých míst.
+      </p>
 
-      <div class="steps">
+      <div class="flow">
         <div class="step">
-          <div class="num">1</div>
+          <div class="stepNum">1</div>
           <div>
-            <b>Zprostředkovatelská smlouva (ZS)</b>
-            <p>Dohodneme: jaká nemovitost se prodává, za jakou částku, časový horizont a provize makléře.</p>
+            <b>Ujasnění cíle a zprostředkovatelská smlouva</b>
+            <p>Dohodneme nemovitost, cílovou cenu, časový horizont a provizi. Nastavíme očekávání a hranice vyjednávání.</p>
           </div>
         </div>
 
         <div class="step">
-          <div class="num">2</div>
+          <div class="stepNum">2</div>
           <div>
-            <b>Marketing</b>
-            <p>Úklid či homestaging + foto/video. Zveřejnění na realitních serverech a na sociálních sítích.</p>
+            <b>Příprava + marketing</b>
+            <p>Úklid/homestaging, foto/video. Inzerce na realitních serverech a na sociálních sítích.</p>
             <ul>
               <li>Sreality</li>
               <li>iDNES Reality</li>
               <li>HN reality</li>
               <li>RealityMix</li>
-              <li>Osobní Facebook a Instagram</li>
+              <li>Facebook a Instagram</li>
             </ul>
           </div>
         </div>
 
         <div class="step">
-          <div class="num">3</div>
+          <div class="stepNum">3</div>
           <div>
-            <b>Prohlídky a prověření zájemce</b>
-            <p>Na prohlídky chodí vždy pouze makléř. Vážného zájemce prověřím a veškeré informace předám prodávajícímu.</p>
+            <b>Prohlídky + prověření zájemců</b>
+            <p>Na prohlídky chodím já. Vážné zájemce prověřím, držím dohodnutou cenu a chráním čas prodávajícího.</p>
           </div>
         </div>
 
         <div class="step">
-          <div class="num">4</div>
+          <div class="stepNum">4</div>
           <div>
-            <b>Blokovací depozitum → KS → advokátní úschova</b>
-            <p>Dohoda o složení blokovacího depozita je trojstranná (prodávající, kupující, makléř). Depozitum je ve výši provize makléře. Obvykle 4–6 týdnů na finalizaci hypotéky.</p>
-            <ul>
-              <li>Kupní smlouvu připraví advokát</li>
-              <li>Kupující skládá zbytek kupní ceny do advokátní úschovy</li>
-            </ul>
+            <b>Depozitum → kupní smlouva → advokátní úschova</b>
+            <p>Trojstranná dohoda o depozitu, následně kupní smlouva od advokáta a složení kupní ceny do úschovy.</p>
           </div>
         </div>
 
         <div class="step">
-          <div class="num">5</div>
+          <div class="stepNum">5</div>
           <div>
-            <b>Katastr → předání → přepisy energií</b>
-            <p>Po obdržení kupní ceny advokát posílá návrh na vklad na katastr. Katastr standardně zapisuje změnu do 21 dnů, poté následuje předání a přepisy energií a vody dle dohody stran.</p>
+            <b>Katastr → předání → přepisy</b>
+            <p>Návrh na vklad, katastr, následně předání a přepisy energií a vody dle dohody stran.</p>
           </div>
         </div>
 
-        <div class="card">
-          <b>Co je v provizi</b>
-          <p>V rámci provize (obvykle rovné blokovacímu depozitu) zajišťuji a hradím: přípravu na focení/video, fotografie/video, prezentaci na realitních serverech, advokáta, prohlídky, prověření a jednání se zájemci. Prodávající nic neplatí předem.</p>
+        <div class="step">
+          <div class="stepNum">6</div>
+          <div>
+            <b>Co je v provizi</b>
+            <p>Příprava, foto/video, inzerce, advokát, prohlídky, prověření a jednání se zájemci. Prodávající nic neplatí předem.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- VIDEA -->
     <section class="block" id="videa">
-      <div class="sectionHead">
-        <div>
-          <h2>Videa</h2>
-          <p>Ukázky prezentace nemovitostí. Doporučení: hostovat mimo GitHub a vložit sem embed (rychlejší načítání).</p>
-        </div>
-      </div>
+      <div class="label">Videa</div>
+      <h2 class="h2">Ukázky prezentace</h2>
+      <p class="lead">
+        Doporučení: videa hostovat mimo GitHub (YouTube/Vimeo jako „unlisted“) a sem vložit embed. GitHub Pages není ideální CDN na video.
+      </p>
 
       <div class="videoGrid">
         <div class="card">
-          <b>Video #1</b>
-          <p class="small">Lokálně: <code>assets/video/video-1.mp4</code></p>
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4V5zm6 4v6l6-3-6-3z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Video #1 (lokálně)</h3></div>
+          </div>
+          <p class="cardText">Pokud hostuješ lokálně: <code>assets/video/video-1.mp4</code></p>
           <video controls preload="metadata">
             <source src="assets/video/video-1.mp4" type="video/mp4">
           </video>
         </div>
 
         <div class="card">
-          <b>Video #2 (embed)</b>
-          <p class="small">Sem vlož iframe z YouTube/Vimeo (unlisted).</p>
-          <div style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:#f3f4f6;display:flex;align-items:center;justify-content:center;color:#6b7280;font-weight:700">
-            SEM PATŘÍ IFRAME
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4V4zm7 5v6l6-3-6-3z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Video #2 (embed)</h3></div>
           </div>
+          <p class="cardText">Sem vlož <code>&lt;iframe&gt;</code> z YouTube/Vimeo (unlisted).</p>
+          <div class="placeholder">SEM PATŘÍ IFRAME</div>
         </div>
       </div>
     </section>
 
     <!-- REFERENCE -->
     <section class="block" id="reference">
-      <div class="sectionHead">
-        <div>
-          <h2>Reference</h2>
-          <p>Bez externích zdrojů musíš přidat 1 větu kontextu, jinak to nevypadá věrohodně (vypadá to jako seznam jmen).</p>
-        </div>
-      </div>
+      <div class="label">Reference</div>
+      <h2 class="h2">Co říkají klienti</h2>
+      <p class="lead">
+        Bez externích zdrojů musí mít každá reference 1 větu kontextu (typ nemovitosti / situace / výsledek), jinak to vypadá jako náhodný seznam jmen.
+      </p>
 
       <div class="strip">
         <div class="quote"><p>Ing. Bohumil Kolář a Zdena Kolářová</p><b>TODO: 1 věta kontext</b></div>
@@ -538,27 +767,41 @@
 
     <!-- KONTAKT -->
     <section class="block" id="kontakt">
-      <div class="sectionHead">
-        <div>
-          <h2>Kontakt</h2>
-          <p>Působnost: Praha a Středočeský kraj.</p>
-        </div>
-      </div>
+      <div class="label">Kontakt</div>
+      <h2 class="h2">Domluvit konzultaci</h2>
+      <p class="lead">Působnost: Praha a Středočeský kraj.</p>
 
-      <div class="cards3">
-        <div class="card">
-          <b>Telefon</b>
-          <p><a href="tel:+420123456789">+420 123 456 789</a></p>
-          <p class="small">TODO: doplň reálné číslo</p>
+      <div class="contactGrid">
+        <div class="card contactCard">
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.7 3.9 5.2 6.6 6.6l2.2-2.2c.3-.3.8-.4 1.2-.2 1.3.4 2.6.7 4 .7.7 0 1.2.5 1.2 1.2V21c0 .7-.5 1.2-1.2 1.2C9.9 22.2 1.8 14.1 1.8 4.2 1.8 3.5 2.3 3 3 3h3.4c.7 0 1.2.5 1.2 1.2 0 1.4.2 2.7.7 4 .1.4 0 .9-.3 1.2l-2.4 2.4z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Telefon</h3></div>
+          </div>
+          <p class="cardText"><a href="tel:+420123456789">+420 123 456 789</a></p>
+          <p class="note">TODO: doplň reálné číslo</p>
         </div>
-        <div class="card">
-          <b>Email</b>
-          <p><a href="mailto:email@domena.cz">email@domena.cz</a></p>
-          <p class="small">TODO: doplň reálný email</p>
+
+        <div class="card contactCard">
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M2 6h20v12H2V6zm2 2v8h16V8l-8 5-8-5zm8 3L4.7 8h14.6L12 11z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Email</h3></div>
+          </div>
+          <p class="cardText"><a href="mailto:email@domena.cz">email@domena.cz</a></p>
+          <p class="note">TODO: doplň reálný email</p>
         </div>
-        <div class="card">
-          <b>Údaje</b>
-          <p class="small">TODO: IČO / sídlo / zásady zpracování osobních údajů.</p>
+
+        <div class="card contactCard">
+          <div class="cardHead">
+            <div class="iBox" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 7 7c0 2.6-1.4 4.8-3.5 6V18h-7v-3C6.4 13.8 5 11.6 5 9a7 7 0 0 1 7-7zm-3 19h6v2H9v-2z"/></svg>
+            </div>
+            <div><h3 class="cardTitle">Údaje</h3></div>
+          </div>
+          <p class="cardText">TODO: IČO / sídlo / zásady zpracování osobních údajů.</p>
         </div>
       </div>
     </section>
@@ -570,7 +813,7 @@
           <span>Certifikovaný realitní makléř • Praha a Středočeský kraj</span>
         </div>
         <div class="right">
-          <a href="#kontakt">Kontakt</a> • <a href="#proces">Postup</a> • <a href="#reference">Reference</a><br/>
+          <a href="#kontakt">Kontakt</a> • <a href="#proces">Spolupráce</a> • <a href="#reference">Reference</a><br/>
           <span>© 2026 • TODO: Telefon • TODO: Email • TODO: IČO</span>
         </div>
       </div>
@@ -585,5 +828,11 @@
       <a class="btn" href="#kontakt">Kontakt</a>
     </div>
   </div>
+
+  <!--
+    Největší “trust killer”:
+    1) hero.JPG musí být ostré (2400px+). Jinak to bude měkké a amatérské.
+    2) zruš TODO kontakty a doplň 1 větu ke každé referenci.
+  -->
 </body>
 </html>
