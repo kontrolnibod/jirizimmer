@@ -23,31 +23,42 @@
   <style>
     :root{
       --bg:#ffffff;
+      --bg2:#f6f7fb;
+      --surface:#ffffff;
       --ink:#0b1220;
       --mut:#4b5565;
       --mut2:#6b7280;
-      --line:rgba(15,23,42,.10);
-      --card:#ffffff;
-      --shadow:0 18px 40px rgba(2,6,23,.08);
-      --shadow2:0 10px 24px rgba(2,6,23,.08);
-      --r:22px; --r2:16px; --w:1120px;
-      --accent:#0b1220; /* držíme konzervativní */
+      --line:rgba(15,23,42,.12);
+      --shadow:0 22px 55px rgba(2,6,23,.10);
+      --shadow2:0 12px 26px rgba(2,6,23,.07);
+      --r:22px;
+      --r2:16px;
+      --w:1100px;
+      --accent:#0b1220;
     }
+
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       color:var(--ink);
-      background: linear-gradient(180deg, #ffffff, #f7f8fb);
+      background: linear-gradient(180deg, var(--bg), var(--bg2));
     }
     a{color:inherit}
-    .wrap{max-width:var(--w); margin:0 auto; padding:22px 18px}
+    .wrap{max-width:var(--w); margin:0 auto; padding:28px 18px}
+
+    /* Full-bleed helper (break out of wrapper) */
+    .fullbleed{
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
+    }
 
     /* NAV */
     .nav{
       position:sticky; top:0; z-index:50;
-      background: rgba(255,255,255,.85);
+      background: rgba(255,255,255,.88);
       backdrop-filter: blur(10px);
       border-bottom:1px solid var(--line);
     }
@@ -64,12 +75,15 @@
     }
     .brand b{display:block; font-size:14px; letter-spacing:.2px}
     .brand span{display:block; font-size:12px; color:var(--mut2)}
+
     .menu{display:none; gap:16px; align-items:center}
     .menu a{color:var(--mut); text-decoration:none; font-size:13px}
     .menu a:hover{color:var(--ink)}
+    @media(min-width:980px){.menu{display:flex}}
+
     .pill{
       border:1px solid var(--line);
-      background: rgba(255,255,255,.9);
+      background: rgba(255,255,255,.92);
       color:var(--mut);
       padding:10px 12px;
       border-radius:999px;
@@ -90,46 +104,60 @@
       box-shadow: var(--shadow2);
     }
     .btn:hover{opacity:.92}
-    @media(min-width:980px){.menu{display:flex}}
 
-    /* HERO FULL WIDTH */
-    .hero{padding:18px 0 8px}
+    /* HERO (full width) */
+    .hero{padding:18px 0 10px}
     .heroCard{
-      border:1px solid var(--line);
-      border-radius: var(--r);
+      border:1px solid rgba(255,255,255,.16);
+      border-radius: 28px;
       overflow:hidden;
       box-shadow: var(--shadow);
-      background: var(--card);
       position:relative;
-      min-height: clamp(520px, 62vh, 740px);
+      min-height: clamp(540px, 66vh, 780px);
+      background:#0b1220;
     }
     .heroMedia{
       position:absolute; inset:0;
-      /* jemný overlay – nečernat, jen zajištění čitelnosti textu */
-      background: linear-gradient(180deg, rgba(255,255,255,.00) 30%, rgba(0,0,0,.55) 100%);
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 42%, rgba(0,0,0,.45) 100%),
+        linear-gradient(180deg, rgba(0,0,0,.10) 35%, rgba(0,0,0,.65) 100%);
     }
     .heroMedia img{
       position:absolute; inset:0;
       width:100%; height:100%;
       object-fit:cover;
-      /* LADĚNÍ KOMPOZICE */
-      object-position: center 22%;
+      object-position:center 20%;
       /* žádné filtry/opacity/scale => ostrost */
     }
     .heroOverlay{
       position:absolute; inset:0;
-      padding: 28px 24px;
+      padding: 34px 26px;
       display:flex; flex-direction:column; justify-content:flex-end;
-      gap:14px;
+      gap:16px;
       color:#fff;
     }
-    .kicker{opacity:.92; font-size:13px; display:flex; gap:10px; flex-wrap:wrap; align-items:center}
+    .kicker{
+      display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+      font-size:13px; opacity:.92;
+    }
     .dot{width:6px; height:6px; border-radius:99px; background: rgba(255,255,255,.92); display:inline-block}
-    h1{margin:0; font-size: clamp(36px, 4.2vw, 64px); line-height:1.02; letter-spacing:-0.8px}
-    .sub{margin:0; opacity:.92; font-size: clamp(15px, 1.35vw, 19px); line-height:1.55; max-width: 72ch}
+
+    h1{
+      margin:0;
+      font-size: clamp(40px, 4.5vw, 70px);
+      line-height:1.01;
+      letter-spacing:-1px;
+    }
+    .sub{
+      margin:0;
+      font-size: clamp(15px, 1.35vw, 19px);
+      line-height:1.65;
+      opacity:.92;
+      max-width: 78ch;
+    }
     .heroActions{display:flex; gap:10px; flex-wrap:wrap}
     .ghost{
-      border:1px solid rgba(255,255,255,.28);
+      border:1px solid rgba(255,255,255,.30);
       background: rgba(255,255,255,.10);
       color:#fff;
       padding:10px 12px;
@@ -141,38 +169,54 @@
       backdrop-filter: blur(8px);
     }
     .ghost:hover{background: rgba(255,255,255,.16)}
+    .heroMeta{
+      display:grid; gap:10px;
+      margin-top: 6px;
+      max-width: 920px;
+    }
+    @media(min-width:980px){.heroMeta{grid-template-columns:repeat(3,1fr)}}
+    .metaCard{
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 14px 14px;
+      backdrop-filter: blur(10px);
+    }
+    .metaCard b{display:block; font-size:13px; letter-spacing:.1px}
+    .metaCard small{display:block; margin-top:6px; opacity:.82; line-height:1.5}
 
     /* SECTIONS */
-    section.block{padding:34px 0}
-    .sectionHead{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom:16px}
-    .sectionHead h2{margin:0; font-size: clamp(20px, 2.2vw, 28px); letter-spacing:-0.3px}
-    .sectionHead p{margin:0; color:var(--mut); font-size:14px; line-height:1.55; max-width: 86ch}
+    section.block{padding:52px 0}
+    .sectionHead{display:flex; justify-content:space-between; align-items:flex-end; gap:12px; margin-bottom:18px}
+    .sectionHead h2{margin:0; font-size: clamp(22px, 2.2vw, 30px); letter-spacing:-.35px}
+    .sectionHead p{margin:0; color:var(--mut); font-size:14px; line-height:1.75; max-width: 92ch}
 
-    .cards3{display:grid; gap:12px}
+    .cards3{display:grid; gap:14px}
     @media(min-width:980px){.cards3{grid-template-columns:repeat(3,1fr)}}
-    .cards4{display:grid; gap:12px}
+    .cards4{display:grid; gap:14px}
     @media(min-width:980px){.cards4{grid-template-columns:repeat(4,1fr)}}
+
     .card{
       border:1px solid var(--line);
-      background: var(--card);
+      background: var(--surface);
       border-radius: var(--r2);
-      padding: 16px;
-      box-shadow: 0 10px 22px rgba(2,6,23,.05);
+      padding: 18px;
+      box-shadow: var(--shadow2);
     }
-    .card b{display:block; margin-bottom:6px}
-    .card p{margin:0; color:var(--mut); font-size:14px; line-height:1.6}
-    .small{color:var(--mut2); font-size:12px; line-height:1.45}
+    .card b{display:block; margin-bottom:6px; letter-spacing:.1px}
+    .card p{margin:0; color:var(--mut); font-size:14px; line-height:1.7}
+    .small{color:var(--mut2); font-size:12px; line-height:1.55}
 
     /* PROCESS */
-    .steps{display:grid; gap:12px}
+    .steps{display:grid; gap:14px}
     @media(min-width:980px){.steps{grid-template-columns:1fr 1fr}}
     .step{
       display:flex; gap:12px;
       border:1px solid var(--line);
-      background: var(--card);
+      background: var(--surface);
       border-radius: var(--r2);
-      padding: 14px;
-      box-shadow: 0 10px 22px rgba(2,6,23,.05);
+      padding: 16px;
+      box-shadow: var(--shadow2);
     }
     .num{
       width:38px; height:38px; border-radius:14px;
@@ -183,25 +227,25 @@
       flex:0 0 auto;
     }
     .step b{display:block; margin-bottom:4px}
-    .step p{margin:0; color:var(--mut); font-size:14px; line-height:1.6}
-    ul{margin:8px 0 0 18px; color:var(--mut); line-height:1.7}
+    .step p{margin:0; color:var(--mut); font-size:14px; line-height:1.7}
+    ul{margin:10px 0 0 18px; color:var(--mut); line-height:1.8}
 
     /* VIDEO */
-    .videoGrid{display:grid; gap:12px}
+    .videoGrid{display:grid; gap:14px}
     @media(min-width:980px){.videoGrid{grid-template-columns:1fr 1fr}}
     video{width:100%; border-radius:14px; border:1px solid var(--line); background:#000}
 
     /* QUOTES */
-    .strip{display:grid; gap:12px}
+    .strip{display:grid; gap:14px}
     @media(min-width:980px){.strip{grid-template-columns:1fr 1fr 1fr}}
     .quote{
       border:1px solid var(--line);
-      background: var(--card);
+      background: var(--surface);
       border-radius: var(--r2);
-      padding: 14px;
+      padding: 16px;
       position:relative;
       overflow:hidden;
-      box-shadow: 0 10px 22px rgba(2,6,23,.05);
+      box-shadow: var(--shadow2);
     }
     .quote:before{
       content:"“";
@@ -211,11 +255,11 @@
       color: rgba(11,18,32,.08);
       font-weight: 900;
     }
-    .quote p{margin:0; color:var(--mut); font-size:14px; line-height:1.6}
+    .quote p{margin:0; color:var(--mut); font-size:14px; line-height:1.7}
     .quote b{display:block; margin-top:10px; font-size:13px; color:var(--ink)}
 
     /* FOOTER */
-    footer{padding:26px 0 40px; color:var(--mut2); font-size:12px}
+    footer{padding:26px 0 46px; color:var(--mut2); font-size:12px}
     .footGrid{display:grid; gap:10px}
     @media(min-width:980px){.footGrid{grid-template-columns:1fr 1fr; align-items:center}}
     .right{text-align:left}
@@ -224,7 +268,7 @@
     /* MOBILE STICKY */
     .mobileSticky{
       position:fixed; left:0; right:0; bottom:0; z-index:60;
-      background: rgba(255,255,255,.92);
+      background: rgba(255,255,255,.94);
       border-top: 1px solid var(--line);
       backdrop-filter: blur(10px);
       padding: 10px 12px;
@@ -267,44 +311,62 @@
     </div>
   </div>
 
-  <div class="wrap" id="top">
+  <div id="top"></div>
 
-    <!-- HERO -->
-    <div class="hero">
-      <div class="heroCard">
-        <div class="heroMedia">
-          <!-- Doporučeno: ostrý portrét tebe, šířka 2400px+ -->
-          <img src="hero.JPG" alt="RNDr. Jiří Zimmer — realitní makléř" loading="lazy">
+  <!-- HERO FULL-WIDTH -->
+  <div class="hero fullbleed">
+    <div class="heroCard">
+      <div class="heroMedia">
+        <!-- HERO FOTO: doporučeno ostrý portrét tebe, 2400–3200px+ šířka -->
+        <img src="hero.JPG" alt="RNDr. Jiří Zimmer — realitní makléř" loading="lazy">
+      </div>
+
+      <div class="heroOverlay">
+        <div class="kicker">
+          <span class="dot"></span><span>Praha a Středočeský kraj</span>
+          <span class="dot"></span><span>Prodej nemovitostí</span>
+          <span class="dot"></span><span>Minimalizace rizik</span>
         </div>
 
-        <div class="heroOverlay">
-          <div class="kicker">
-            <span class="dot"></span><span>Praha a Středočeský kraj</span>
-            <span class="dot"></span><span>Prodej nemovitostí</span>
-            <span class="dot"></span><span>Minimalizace rizik</span>
+        <h1>Prodej za co nejvyšší cenu.<br><span style="opacity:.92">V co možná nejkratším čase.</span></h1>
+
+        <p class="sub">
+          Jsem certifikovaný realitní makléř. Specializuji se na zprostředkování prodeje nemovitostí s důrazem na cenu, rychlost a minimalizaci rizik.
+        </p>
+
+        <div class="heroActions">
+          <a class="btn" href="#kontakt">Kontakt</a>
+          <a class="ghost" href="#proces">Postup prodeje</a>
+          <a class="ghost" href="#reference">Reference</a>
+        </div>
+
+        <div class="heroMeta">
+          <div class="metaCard">
+            <b>Působnost</b>
+            <small>Praha a Středočeský kraj</small>
           </div>
-
-          <h1>Prodej za co nejvyšší cenu.<br><span style="opacity:.92">V co možná nejkratším čase.</span></h1>
-
-          <p class="sub">
-            Jsem certifikovaný realitní makléř. Specializuji se na zprostředkování prodeje nemovitostí s důrazem na cenu, rychlost a minimalizaci rizik.
-          </p>
-
-          <div class="heroActions">
-            <a class="btn" href="#kontakt">Kontakt</a>
-            <a class="ghost" href="#proces">Postup prodeje</a>
-            <a class="ghost" href="#reference">Reference</a>
+          <div class="metaCard">
+            <b>Strategie prodeje</b>
+            <small>Co nejvyšší cena • co nejkratší čas • minimalizace rizik</small>
+          </div>
+          <div class="metaCard">
+            <b>Právní bezpečí</b>
+            <small>Advokát • úschova • katastr • předání • přepisy energií</small>
           </div>
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- REST OF PAGE IN WRAP -->
+  <div class="wrap">
 
     <!-- RYCHLE -->
     <section class="block" id="rychle">
       <div class="sectionHead">
         <div>
           <h2>Rychlé informace</h2>
-          <p>Krátce a konkrétně. Cíl: důvěra bez marketingové omáčky.</p>
+          <p>Krátce a konkrétně. Bez efektů, bez slibotechniky. Jen rámec práce a kontrola rizik.</p>
         </div>
       </div>
 
@@ -315,13 +377,17 @@
         <div class="card"><b>Právní bezpečí</b><p>Advokát, úschova, katastr, předání, přepisy energií</p></div>
       </div>
 
-      <div style="height:12px"></div>
+      <div style="height:14px"></div>
 
       <div class="cards3">
         <div class="card"><b>Bez platby předem</b><p>Klient nic neplatí předem. Vše řeším v rámci provize.</p></div>
         <div class="card"><b>Minimální časová zátěž</b><p>Na prohlídky chodím vždy pouze já; prodávající není zatěžován.</p></div>
         <div class="card"><b>Kontrola rizik</b><p>Proces a dokumenty jsou vedené tak, aby se minimalizovala rizika pro prodávajícího.</p></div>
       </div>
+
+      <p class="small" style="margin-top:14px">
+        Pozn.: V rámci provize zajišťuji a hradím přípravu, foto/video, prezentaci, advokáta i prohlídky — klient nic neplatí předem.
+      </p>
     </section>
 
     <!-- SLUZBY -->
@@ -360,25 +426,56 @@
       </div>
 
       <div class="steps">
-        <div class="step"><div class="num">1</div><div><b>Zprostředkovatelská smlouva (ZS)</b><p>Dohodneme: jaká nemovitost se prodává, za jakou částku, časový horizont a provize makléře.</p></div></div>
         <div class="step">
-          <div class="num">2</div><div>
+          <div class="num">1</div>
+          <div>
+            <b>Zprostředkovatelská smlouva (ZS)</b>
+            <p>Dohodneme: jaká nemovitost se prodává, za jakou částku, časový horizont a provize makléře.</p>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">2</div>
+          <div>
             <b>Marketing</b>
             <p>Úklid či homestaging + foto/video. Zveřejnění na realitních serverech a na sociálních sítích.</p>
             <ul>
-              <li>Sreality</li><li>iDNES Reality</li><li>HN reality</li><li>RealityMix</li><li>Osobní Facebook a Instagram</li>
+              <li>Sreality</li>
+              <li>iDNES Reality</li>
+              <li>HN reality</li>
+              <li>RealityMix</li>
+              <li>Osobní Facebook a Instagram</li>
             </ul>
           </div>
         </div>
-        <div class="step"><div class="num">3</div><div><b>Prohlídky a prověření zájemce</b><p>Na prohlídky chodí vždy pouze makléř. Vážného zájemce prověřím a veškeré informace předám prodávajícímu.</p></div></div>
+
         <div class="step">
-          <div class="num">4</div><div>
-            <b>Blokovací depozitum → KS → advokátní úschova</b>
-            <p>Dohoda o složení blokovacího depozita je trojstranná (prodávající, kupující, makléř). Depozitum je ve výši provize makléře. Obvykle 4–6 týdnů na finalizaci hypotéky.</p>
-            <ul><li>Kupní smlouvu připraví advokát</li><li>Kupující skládá zbytek kupní ceny do advokátní úschovy</li></ul>
+          <div class="num">3</div>
+          <div>
+            <b>Prohlídky a prověření zájemce</b>
+            <p>Na prohlídky chodí vždy pouze makléř. Vážného zájemce prověřím a veškeré informace předám prodávajícímu.</p>
           </div>
         </div>
-        <div class="step"><div class="num">5</div><div><b>Katastr → předání → přepisy energií</b><p>Po obdržení kupní ceny advokát posílá návrh na vklad na katastr. Katastr standardně zapisuje změnu do 21 dnů, poté následuje předání a přepisy energií a vody dle dohody stran.</p></div></div>
+
+        <div class="step">
+          <div class="num">4</div>
+          <div>
+            <b>Blokovací depozitum → KS → advokátní úschova</b>
+            <p>Dohoda o složení blokovacího depozita je trojstranná (prodávající, kupující, makléř). Depozitum je ve výši provize makléře. Obvykle 4–6 týdnů na finalizaci hypotéky.</p>
+            <ul>
+              <li>Kupní smlouvu připraví advokát</li>
+              <li>Kupující skládá zbytek kupní ceny do advokátní úschovy</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="step">
+          <div class="num">5</div>
+          <div>
+            <b>Katastr → předání → přepisy energií</b>
+            <p>Po obdržení kupní ceny advokát posílá návrh na vklad na katastr. Katastr standardně zapisuje změnu do 21 dnů, poté následuje předání a přepisy energií a vody dle dohody stran.</p>
+          </div>
+        </div>
 
         <div class="card">
           <b>Co je v provizi</b>
@@ -392,7 +489,7 @@
       <div class="sectionHead">
         <div>
           <h2>Videa</h2>
-          <p>Ukázky prezentace nemovitostí. Doporučeno: hostovat mimo GitHub a vložit embed (rychlejší načítání).</p>
+          <p>Ukázky prezentace nemovitostí. Doporučení: hostovat mimo GitHub a vložit sem embed (rychlejší načítání).</p>
         </div>
       </div>
 
@@ -420,7 +517,7 @@
       <div class="sectionHead">
         <div>
           <h2>Reference</h2>
-          <p>Bez externích zdrojů musíš přidat 1 větu kontextu, jinak to vypadá slabě.</p>
+          <p>Bez externích zdrojů musíš přidat 1 větu kontextu, jinak to nevypadá věrohodně (vypadá to jako seznam jmen).</p>
         </div>
       </div>
 
