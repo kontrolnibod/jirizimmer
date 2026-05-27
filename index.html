@@ -40,7 +40,6 @@
 
       --w:1120px;
 
-      /* HERO POSITION (tady ladíš) */
       --heroX: 80%;
       --heroY: 23%;
       --heroX_m: 80%;
@@ -163,7 +162,6 @@
         linear-gradient(180deg, rgba(0,0,0,.10) 35%, rgba(0,0,0,.74) 100%);
     }
 
-    /* FORCE: vždy použij object-position (přebije případné staré transform/width hacky) */
     .heroMedia img{
       position:absolute; inset:0;
       width:100% !important;
@@ -393,7 +391,7 @@
       overflow:hidden;
     }
     .tCard:before{
-      content:"“";
+      content:"\201C";
       position:absolute;
       top:-18px; left:12px;
       font-size: 90px;
@@ -404,6 +402,108 @@
     .tMeta{margin-top:12px; display:flex; flex-direction:column; gap:4px}
     .tName{font-weight:900; font-size:14px; color:var(--ink)}
     .tCtx{font-size:13px; color:var(--mut2)}
+
+    /* ODHAD FORM */
+    .odhadCard{
+      margin-top: 28px;
+      border: 1px solid rgba(15,23,42,.10);
+      background: var(--card);
+      border-radius: 28px;
+      padding: 36px;
+      box-shadow: 0 16px 34px rgba(2,6,23,.08);
+      max-width: 720px;
+    }
+    .formGrid{
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    @media(min-width:640px){
+      .formGrid{ grid-template-columns: 1fr 1fr; }
+      .formGrid .fullWidth{ grid-column: 1 / -1; }
+    }
+    .formGroup{
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .formGroup label{
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .3px;
+      color: var(--mut);
+      text-transform: uppercase;
+    }
+    .formGroup input,
+    .formGroup textarea{
+      border: 1px solid rgba(15,23,42,.16);
+      background: rgba(255,255,255,.80);
+      border-radius: 14px;
+      padding: 13px 16px;
+      font-size: 15px;
+      font-family: inherit;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .15s, box-shadow .15s;
+      width: 100%;
+    }
+    .formGroup input:focus,
+    .formGroup textarea:focus{
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(18,26,69,.10);
+    }
+    .formGroup textarea{
+      resize: vertical;
+      min-height: 90px;
+    }
+    .formSubmit{
+      margin-top: 6px;
+    }
+    .formSubmit button{
+      border: 1px solid rgba(18,26,69,.18);
+      background: var(--accent);
+      color: #fff;
+      padding: 13px 28px;
+      border-radius: 999px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+      box-shadow: 0 12px 26px rgba(18,26,69,.18);
+      transition: background .15s;
+    }
+    .formSubmit button:hover{ background: var(--accent2); }
+    .formSubmit button:disabled{
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    .formMsg{
+      display: none;
+      margin-top: 18px;
+      padding: 16px 20px;
+      border-radius: 14px;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+    .formMsg.ok{
+      background: rgba(16,120,60,.08);
+      border: 1px solid rgba(16,120,60,.20);
+      color: #0b4f24;
+      display: block;
+    }
+    .formMsg.err{
+      background: rgba(180,30,30,.07);
+      border: 1px solid rgba(180,30,30,.18);
+      color: #7a1010;
+      display: block;
+    }
+    .formNote{
+      margin-top: 14px;
+      font-size: 13px;
+      color: var(--mut2);
+      line-height: 1.7;
+    }
 
     /* CONTACT CTA */
     .ctaCard{
@@ -487,6 +587,7 @@
           <a href="#proces">Spolupráce</a>
           <a href="#videa">Videa</a>
           <a href="#reference">Reference</a>
+          <a href="#odhad">Odhad</a>
         </nav>
 
         <div class="navRight">
@@ -515,8 +616,6 @@
           Zprostředkování prodeje nemovitostí s důrazem na cenu, rychlost a minimalizaci rizik.
           Žádná platba předem - přípravu, marketing i právní servis řeším v rámci provize.
         </p>
-
-      
 
         <div class="heroMeta">
           <div class="metaCard">
@@ -598,7 +697,7 @@
             </div>
             <div><h3 class="cardTitle">Právní servis</h3></div>
           </div>
-          <p class="cardText">Advokát, úschova, katastr, přepisy, předání. </p>
+          <p class="cardText">Advokát, úschova, katastr, přepisy, předání.</p>
         </div>
       </div>
 
@@ -706,9 +805,7 @@
     <section class="block" id="videa">
       <div class="label">Videa</div>
       <h2 class="h2">Ukázky prezentace</h2>
-      <p class="lead">
-       
-      </p>
+      <p class="lead"></p>
 
       <div class="videoGrid">
         <div class="card">
@@ -760,8 +857,7 @@
     <section class="block" id="reference">
       <div class="label">Reference / Konzultace</div>
       <h2 class="h2">Co říkají klienti</h2>
-      <p class="lead">
-      </p>
+      <p class="lead"></p>
 
       <div class="testimonials">
         <article class="tCard">
@@ -789,7 +885,7 @@
         </article>
 
         <article class="tCard">
-          <p class="tText">Vysněný dům jsem získala díky profesionálnímu a trpělivému přístupu pana makléře. Spolupráci nepřerušil 
+          <p class="tText">Vysněný dům jsem získala díky profesionálnímu a trpělivému přístupu pana makléře. Spolupráci nepřerušil
             i když jsem získala hypotéku až na druhý pokus.</p>
           <div class="tMeta">
             <div class="tName">Mgr. Markéta Šulcová</div>
@@ -814,6 +910,58 @@
         </article>
       </div>
     </section>
+
+    <!-- ====== ODHAD SEKCE ====== -->
+    <section class="block" id="odhad">
+      <div class="label">Nezávazný odhad</div>
+      <h2 class="h2">Zjistěte hodnotu nemovitosti</h2>
+      <p class="lead">
+        Vyplňte formulář — ozvu se zpravidla do 24 hodin. Odhad je nezávazný a zdarma.
+      </p>
+
+      <div class="odhadCard">
+        <div class="formGrid" id="odhadForm">
+          <div class="formGroup">
+            <label for="f-jmeno">Jméno a příjmení *</label>
+            <input type="text" id="f-jmeno" name="jmeno" placeholder="Jan Novák" required autocomplete="name">
+          </div>
+
+          <div class="formGroup">
+            <label for="f-telefon">Telefon *</label>
+            <input type="tel" id="f-telefon" name="telefon" placeholder="+420 777 000 000" required autocomplete="tel">
+          </div>
+
+          <div class="formGroup fullWidth">
+            <label for="f-email">E-mail *</label>
+            <input type="email" id="f-email" name="email" placeholder="jan.novak@email.cz" required autocomplete="email">
+          </div>
+
+          <div class="formGroup fullWidth">
+            <label for="f-adresa">Adresa nemovitosti *</label>
+            <input type="text" id="f-adresa" name="adresa" placeholder="Ulice č.p., Praha nebo Středočeský kraj" required>
+          </div>
+
+          <div class="formGroup fullWidth">
+            <label for="f-poznamka">Doplňující informace (nepovinné)</label>
+            <textarea id="f-poznamka" name="poznamka" placeholder="Typ nemovitosti, dispozice, stav, co vás zajímá..."></textarea>
+          </div>
+
+          <div class="formSubmit fullWidth">
+            <button type="button" id="odhadBtn" onclick="odladSubmit()">Odeslat žádost o odhad</button>
+          </div>
+        </div>
+
+        <div class="formMsg" id="odhadOk">
+          ✓ Žádost odeslána. Ozvu se do 24 hodin.
+        </div>
+        <div class="formMsg" id="odhadErr">
+          Nepodařilo se odeslat. Zkuste to prosím znovu nebo napište přímo na <a href="mailto:zimmereality@atlas.cz">zimmereality@atlas.cz</a>.
+        </div>
+
+        <p class="formNote">* Povinné pole. Údaje použiji výhradně pro zpracování vašeho dotazu.</p>
+      </div>
+    </section>
+    <!-- ====== KONEC ODHAD ====== -->
 
     <section class="block" id="kontakt">
       <div class="label">Kontakt</div>
@@ -847,8 +995,7 @@
             </div>
           </div>
 
-          <p class="note" style="margin-top:16px">
-          </p>
+          <p class="note" style="margin-top:16px"></p>
         </div>
 
         <div>
@@ -858,7 +1005,7 @@
               1) Prodej / koupě<br>
               2) Lokalita + typ nemovitosti<br>
               3) Časový horizont<br>
-              4) Co je pro vás „výhra“ (cena/rychlost/bezpečí)
+              4) Co je pro vás „výhra" (cena/rychlost/bezpečí)
             </div>
           </div>
         </div>
@@ -873,7 +1020,7 @@
         </div>
         <div class="right">
           <a href="#kontakt">Kontakt</a> • <a href="#proces">Spolupráce</a> • <a href="#reference">Reference</a><br/>
-          <span>© 2026 </span>
+          <span>© 2026</span>
         </div>
       </div>
     </footer>
@@ -887,5 +1034,53 @@
       <a class="btn" href="#kontakt">Kontakt</a>
     </div>
   </div>
+
+  <script>
+    async function odladSubmit() {
+      const btn = document.getElementById('odhadBtn');
+      const okEl = document.getElementById('odhadOk');
+      const errEl = document.getElementById('odhadErr');
+
+      const jmeno   = document.getElementById('f-jmeno').value.trim();
+      const telefon = document.getElementById('f-telefon').value.trim();
+      const email   = document.getElementById('f-email').value.trim();
+      const adresa  = document.getElementById('f-adresa').value.trim();
+      const pozn    = document.getElementById('f-poznamka').value.trim();
+
+      if (!jmeno || !telefon || !email || !adresa) {
+        alert('Vyplňte prosím všechna povinná pole.');
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Odesílám…';
+      okEl.className = 'formMsg';
+      errEl.className = 'formMsg';
+
+      try {
+        const res = await fetch('https://formspree.io/f/xlgvanqq', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            jmeno, telefon, email,
+            adresa_nemovitosti: adresa,
+            poznamka: pozn || '—',
+            _subject: 'Žádost o odhad nemovitosti — ' + adresa
+          })
+        });
+
+        if (res.ok) {
+          document.getElementById('odhadForm').style.display = 'none';
+          okEl.className = 'formMsg ok';
+        } else {
+          throw new Error('non-ok');
+        }
+      } catch(e) {
+        errEl.className = 'formMsg err';
+        btn.disabled = false;
+        btn.textContent = 'Odeslat žádost o odhad';
+      }
+    }
+  </script>
 </body>
 </html>
